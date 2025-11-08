@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Mental Health Support & Wellness</title>
-  <meta name="description" content="Gentle, dark-mode mental health resources, tips, and crisis help." />
-  <meta name="color-scheme" content="dark light" />
+  <meta name="description" content="Gentle mental health guidance, dark-mode support page with coping tips and resources." />
+
   <style>
     :root{
       --bg:#0d0f12;
@@ -13,19 +13,17 @@
       --soft:#1b2027;
       --muted:#9aa4ad;
       --text:#e8edf2;
-      --brand: #64ffda;          /* teal accent */
-      --brand-2:#7aa2ff;         /* blue accent */
+      --brand: #64ffda;
+      --brand-2:#7aa2ff;
       --glass: rgba(255,255,255,.06);
       --border: rgba(255,255,255,.07);
       --shadow: 0 10px 30px rgba(0,0,0,.35);
       --radius: 16px;
     }
 
-    * { box-sizing: border-box }
-    html,body { height: 100% }
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      font-family: system-ui, sans-serif;
       color:var(--text);
       background: radial-gradient(1200px 700px at 80% -100px, rgba(122,162,255,.18), transparent 60%),
                   radial-gradient(900px 600px at -10% -60px, rgba(100,255,218,.12), transparent 60%),
@@ -33,311 +31,180 @@
       line-height:1.65;
     }
 
-    /* Top nav */
     .nav{
-      position: sticky; top:0; z-index:40;
+      position: sticky; top:0; z-index:50;
       backdrop-filter: blur(10px);
-      background: linear-gradient(to bottom, rgba(10,12,15,.8), rgba(10,12,15,.2));
+      background: rgba(10,12,15,.7);
       border-bottom: 1px solid var(--border);
     }
     .nav-inner{
-      max-width: 1100px; margin: 0 auto; padding: .9rem 1rem;
-      display:flex; align-items:center; justify-content:space-between;
+      max-width:1100px; margin:auto;
+      padding:1rem; display:flex; justify-content:space-between; align-items:center;
     }
-    .brand{ display:flex; gap:.6rem; align-items:center; font-weight:700; letter-spacing:.3px }
-    .brand .dot{ width:10px; height:10px; border-radius:999px; background:linear-gradient(135deg,var(--brand),var(--brand-2)); box-shadow:0 0 16px var(--brand) }
-    .nav a{ color:var(--muted); text-decoration:none; margin-left:1rem; font-weight:600 }
+    .brand{ display:flex; gap:.5rem; font-weight:700; }
+    .brand .dot{ width:10px;height:10px;border-radius:50%;background:linear-gradient(45deg,var(--brand),var(--brand-2)); }
+    .nav a{ color:var(--muted); margin-left:1rem; text-decoration:none; font-weight:600 }
     .nav a:hover{ color:var(--text) }
 
-    /* Hero */
     .hero{
-      position: relative;
-      min-height: 58vh;
-      display:grid; place-items:center;
-      overflow:hidden;
+      min-height:60vh; display:grid; place-items:center; position:relative; text-align:center;
     }
     .hero::before{
-      content:"";
-      position:absolute; inset:0;
-      background:
-        linear-gradient(to bottom, rgba(13,15,18,.3) 0%, var(--bg) 90%),
-        url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1600&auto=format&fit=crop") center/cover no-repeat;
-      filter: saturate(.9) contrast(1.05) brightness(.8);
-      transform: scale(1.02);
+      content:""; position:absolute; inset:0;
+      background:url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1600&auto=format&fit=crop") center/cover no-repeat;
+      filter:brightness(.7);
     }
     .hero-card{
-      position:relative; z-index:1;
-      max-width: 900px; margin: 8vh 1rem 6vh;
-      padding: clamp(1.2rem, 3vw, 2rem);
-      background: linear-gradient(180deg, var(--glass), rgba(255,255,255,.03));
+      position:relative; z-index:2; max-width:800px; padding:2rem;
+      border-radius:var(--radius);
+      background:linear-gradient(180deg,var(--glass),rgba(255,255,255,.03));
       border:1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      display:grid; gap: .9rem;
-      text-align:center;
+      box-shadow:var(--shadow);
     }
-    .kicker{ color:var(--brand); font-weight:700; letter-spacing:.2em; font-size:.75rem; text-transform:uppercase }
-    h1{ margin:0; font-size: clamp(1.8rem, 3.8vw, 2.6rem); line-height:1.25 }
-    .lede{ color:var(--muted); margin: .2rem auto 0; max-width: 60ch }
-    .cta-row{ display:flex; gap:.7rem; justify-content:center; flex-wrap:wrap; margin-top:.4rem }
-    .btn{
-      border:1px solid var(--border);
-      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-      padding:.8rem 1.1rem; border-radius: 999px; color:var(--text); text-decoration:none; font-weight:700
-    }
-    .btn.primary{
-      background: linear-gradient(135deg, rgba(100,255,218,.25), rgba(122,162,255,.25));
-      border-color: transparent;
-      box-shadow: 0 6px 25px rgba(122,162,255,.25);
-    }
-    .btn:hover{ transform: translateY(-1px); transition:.2s ease; filter: brightness(1.05) }
+    h1,h2,h3{ margin:0 0 .6rem 0 }
+    .kicker{ color:var(--brand); font-weight:600; text-transform:uppercase; font-size:.8rem; letter-spacing:.1rem; }
+    .lede{ color:var(--muted) }
 
-    /* Sections */
-    .wrap{ max-width:1100px; margin:0 auto; padding: 2rem 1rem 3rem }
-    .section{ margin-top: 2rem }
-    .section h2{
-      font-size: clamp(1.2rem, 2.4vw, 1.6rem);
-      margin: 0 0 1rem; color:#dfe8f2;
-    }
-    .sub{ color:var(--muted); margin-top:-.4rem; margin-bottom:1rem }
+    .wrap{ max-width:1100px; margin:auto; padding:2.5rem 1.2rem }
 
-    /* Grid cards */
-    .grid{ display:grid; gap: 1rem }
-    @media (min-width:720px){ .grid{ grid-template-columns: repeat(3, 1fr) } }
+    .grid{ display:grid; gap:1.3rem }
+    @media(min-width:750px){ .grid{ grid-template-columns:repeat(3,1fr) } }
+
     .card{
-      background: linear-gradient(180deg, var(--glass), rgba(255,255,255,.03));
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
+      background:linear-gradient(180deg,var(--glass),rgba(255,255,255,.03));
+      border:1px solid var(--border);
+      border-radius:var(--radius);
       overflow:hidden;
-      box-shadow: var(--shadow);
-      display:flex; flex-direction:column; min-height:100%;
+      box-shadow:var(--shadow);
+      display:flex; flex-direction:column;
     }
-    .thumb{
-      aspect-ratio: 16/9;
-      background:#0b0e12 center/cover no-repeat;
-      border-bottom:1px solid var(--border);
-    }
-    .card-body{ padding: 1rem 1rem 1.2rem; display:grid; gap:.5rem }
-    .card-body p{ color:var(--muted); margin:0 }
-    .chip{
-      align-self:start;
-      display:inline-flex; gap:.4rem; align-items:center;
-      padding:.35rem .6rem; font-size:.75rem; border-radius:999px;
-      background:rgba(100,255,218,.08); border:1px solid rgba(100,255,218,.25); color:var(--brand)
-    }
+    .thumb{ aspect-ratio:16/9; background-size:cover; background-position:center; }
+    .card-body{ padding:1rem; display:grid; gap:.6rem }
+    .chip{ background:rgba(100,255,218,.15); border-radius:999px; padding:.3rem .6rem; font-size:.75rem; color:var(--brand) }
 
-    /* Resource list */
-    .list{ display:grid; gap:.6rem; margin-top:.6rem }
-    .link{
-      display:flex; align-items:center; gap:.7rem;
-      padding:.75rem .9rem; border-radius: 12px;
-      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
-      border:1px solid var(--border);
-      text-decoration:none; color:var(--text);
-    }
-    .link:hover{ filter: brightness(1.08) }
-    .link small{ color:var(--muted); display:block; margin-top:.1rem }
-    .ico{ width:20px; height:20px; display:inline-grid; place-items:center }
+    .section p.sub{ color:var(--muted); margin-bottom:1.5rem }
 
-    /* Crisis banner */
-    .crisis{
-      margin-top: 2rem;
-      background: linear-gradient(135deg, rgba(255,99,132,.15), rgba(255,180,162,.06));
-      border:1px solid rgba(255,99,132,.28);
-      border-radius: var(--radius);
-      padding: 1rem 1.1rem;
-      display:flex; gap:.9rem; align-items:flex-start;
-      box-shadow: var(--shadow);
-    }
-    .crisis strong{ color:#ffc2c9 }
-    .crisis a{ color:#ffd1d6; font-weight:700 }
-
-    /* FAQ (accordion) */
-    .faq{ margin-top:1.4rem; display:grid; gap:.6rem }
-    details{
-      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
-      border:1px solid var(--border);
-      border-radius: 12px; padding:.8rem 1rem;
-    }
-    summary{ cursor:pointer; font-weight:700; outline:none }
-    details p{ color:var(--muted); margin:.6rem 0 0 }
-
-    /* Footer */
     footer{
-      border-top:1px solid var(--border);
-      background: var(--panel);
-      margin-top: 3rem;
-      padding: 1.2rem;
-      text-align:center;
-      color:var(--muted);
-      font-size:.95rem;
+      text-align:center; padding:1.4rem; background:var(--panel); color:var(--muted); margin-top:3rem;
     }
 
-    /* Motion reduction */
-    @media (prefers-reduced-motion: reduce){
-      .btn, .card, .hero::before { transition:none !important }
-    }
   </style>
 </head>
+
 <body>
 
-  <!-- Top nav -->
-  <div class="nav" role="navigation" aria-label="Primary">
+  <div class="nav">
     <div class="nav-inner">
       <div class="brand"><span class="dot"></span> Mental Health</div>
       <div>
         <a href="#understand">Understand</a>
-        <a href="#actions">Actions</a>
+        <a href="#cope">Cope</a>
         <a href="#resources">Resources</a>
-        <a href="#faq">FAQ</a>
       </div>
     </div>
   </div>
 
-  <!-- Hero -->
   <header class="hero">
-    <div class="hero-card" role="banner">
+    <div class="hero-card">
       <div class="kicker">You’re not alone</div>
-      <h1>Breathe. Slow down. Support is here when your mind feels heavy.</h1>
-      <p class="lede">Gentle guidance, evidence-informed tips, and places to talk to real people—curated for when anxiety, stress, or sadness start to take over.</p>
-      <div class="cta-row">
-        <a class="btn primary" href="#resources">Find Support</a>
-        <a class="btn" href="#actions">Try Quick Calmers</a>
-      </div>
+      <h1>Breathe. You are safe here.</h1>
+      <p class="lede">Your feelings are valid. You deserve peace. This page is a gentle space to learn, rest, and heal.</p>
     </div>
   </header>
 
   <main class="wrap">
 
-    <!-- Understand -->
+    <!-- Updated Emotional Understanding Section -->
     <section id="understand" class="section">
-      <h2>Understand what you’re feeling</h2>
-      <p class="sub">Common mental health challenges often overlap. These cards give you a quick sense of what’s going on and what can help.</p>
+      <h2>Understand what you're feeling</h2>
+      <p class="sub">Emotions are signals, not flaws. These descriptions help you make sense of them.</p>
 
       <div class="grid">
-        <article class="card">
-          <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1507537297725-24a1c029d3ca?q=80&w=1400&auto=format&fit=crop');" role="img" aria-label="Calm ocean waves at dusk"></div>
+
+        <div class="card">
+          <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1603386329225-868f9fa59c31?q=80&w=1600&auto=format&fit=crop');"></div>
           <div class="card-body">
             <span class="chip">Anxiety</span>
-            <h3>Racing thoughts & tight chest</h3>
-            <p>Anxiety can be your brain’s alarm stuck on “high.” Grounding (5-4-3-2-1), box breathing, and limiting caffeine can help reset it.</p>
+            <h3>When your thoughts won’t stop</h3>
+            <p>Your mind is trying to protect you, just too intensely.</p>
+            <p><strong>Try:</strong> Slow breathing (inhale 4, exhale 6), grounding by naming 5 things you can see.</p>
           </div>
-        </article>
+        </div>
 
-        <article class="card">
-          <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?q=80&w=1400&auto=format&fit=crop');" role="img" aria-label="Soft sunlight in a misty forest"></div>
+        <div class="card">
+          <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1527236438218-d82077ae1f85?q=80&w=1600&auto=format&fit=crop');"></div>
           <div class="card-body">
             <span class="chip">Low Mood</span>
-            <h3>Heavy feelings & low energy</h3>
-            <p>Small steps matter: sunlight, a 10-minute walk, and texting one person. If it lasts most days for 2+ weeks, consider professional help.</p>
+            <h3>When everything feels heavy</h3>
+            <p>Motivation doesn't come first; small action creates motivation.</p>
+            <p><strong>Try:</strong> Drink water, step outside for 3 minutes, talk to one person.</p>
           </div>
-        </article>
+        </div>
 
-        <article class="card">
-          <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=1400&auto=format&fit=crop');" role="img" aria-label="Notebook, tea, and a cozy blanket"></div>
+        <div class="card">
+          <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80&w=1600&auto=format&fit=crop');"></div>
           <div class="card-body">
-            <span class="chip">Stress & Burnout</span>
-            <h3>Always “on” & exhausted</h3>
-            <p>Protect your battery: micro-breaks, boundaries, and realistic to-do’s. Your worth is not your productivity.</p>
+            <span class="chip">Burnout</span>
+            <h3>When you’re exhausted but keep going</h3>
+            <p>Your mind and body are asking you to pause.</p>
+            <p><strong>Try:</strong> Take a 2-minute break, say no to one thing, rest without guilt.</p>
           </div>
-        </article>
+        </div>
+
       </div>
     </section>
 
-    <!-- Actions -->
-    <section id="actions" class="section">
-      <h2>Quick calmers you can try now</h2>
-      <p class="sub">Short practices that many people find soothing.</p>
+    <!-- Coping / Healing Section -->
+    <section id="cope" class="section">
+      <h2>How to Cope & Start Healing</h2>
+      <p class="sub">Healing is not instant. But one small step each day is powerful.</p>
 
       <div class="grid">
-        <article class="card">
-          <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?q=80&w=1400&auto=format&fit=crop');" role="img" aria-label="Person breathing deeply by a lake"></div>
+
+        <div class="card">
+          <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?q=80&w=1600&auto=format&fit=crop');"></div>
           <div class="card-body">
-            <h3>Box breathing (4–4–4–4)</h3>
-            <p>Inhale 4 • Hold 4 • Exhale 4 • Hold 4. Repeat 4 times. Signals safety to your nervous system.</p>
+            <h3>Breathing Reset</h3>
+            <p>Inhale 4 • Hold 4 • Exhale 6. Repeat 4 times. It signals safety to your nervous system.</p>
           </div>
-        </article>
-
-        <article class="card">
-          <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1465101162946-4377e57745c3?q=80&w=1400&auto=format&fit=crop');" role="img" aria-label="Close-up of hands journaling"></div>
-          <div class="card-body">
-            <h3>Brain dump</h3>
-            <p>Write everything on your mind for 5 minutes—no editing. Then circle one tiny next step.</p>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1400&auto=format&fit=crop');" role="img" aria-label="City park path in evening light"></div>
-          <div class="card-body">
-            <h3>Five-minute walk</h3>
-            <p>Movement + daylight lifts mood. No gym needed—just a short, gentle stroll.</p>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- Resources -->
-    <section id="resources" class="section">
-      <h2>Where to talk or get help</h2>
-      <p class="sub">Anonymous chats, counseling, and information from trusted sources.</p>
-
-      <div class="list" role="list">
-        <a class="link" href="https://www.7cups.com" target="_blank" rel="noopener">
-          <span class="ico">💬</span>
-          <div>
-            <strong>7 Cups</strong>
-            <small>Free, anonymous emotional support chat with trained listeners.</small>
-          </div>
-        </a>
-
-        <a class="link" href="https://yourdost.com" target="_blank" rel="noopener">
-          <span class="ico">🧑‍⚕️</span>
-          <div>
-            <strong>YourDOST (India)</strong>
-            <small>Online counseling and wellness coaching.</small>
-          </div>
-        </a>
-
-        <a class="link" href="https://www.mentalhealth.gov" target="_blank" rel="noopener">
-          <span class="ico">📚</span>
-          <div>
-            <strong>MentalHealth.gov</strong>
-            <small>US government information on conditions, treatment, and support.</small>
-          </div>
-        </a>
-      </div>
-
-      <div class="crisis" role="note" aria-label="Crisis help">
-        <span class="ico" aria-hidden="true">🚨</span>
-        <div>
-          <strong>If you may be in danger or feel unsafe:</strong>
-          <div>Call local emergency services, a trusted crisis line, or go to the nearest emergency department. In India, you can try <a href="https://kiran.mh21.in/" target="_blank" rel="noopener">KIRAN (1800-599-0019)</a>. If outside India, search “suicide crisis hotline + your country”.</div>
         </div>
+
+        <div class="card">
+          <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1488805990569-3c9e1d76d51c?q=80&w=1600&auto=format&fit=crop');"></div>
+          <div class="card-body">
+            <h3>Talk to Someone Safe</h3>
+            <p>You don’t need perfect words. Try: “I’m overwhelmed. Can you just listen for a minute?”</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=1600&auto=format&fit=crop');"></div>
+          <div class="card-body">
+            <h3>Journal 2 Minutes</h3>
+            <p>Write what hurts. Write what you wish someone understood. Release the pressure inside.</p>
+          </div>
+        </div>
+
       </div>
     </section>
 
-    <!-- FAQ -->
-    <section id="faq" class="section">
-      <h2>Common questions</h2>
-      <div class="faq">
-        <details>
-          <summary>Is it okay to ask for help?</summary>
-          <p>Absolutely. Reaching out is a sign of self-care, not weakness. Most people feel relief after talking to someone safe.</p>
-        </details>
-        <details>
-          <summary>What if I don’t know what to say?</summary>
-          <p>Try: “I’ve been feeling overwhelmed and could use a listening ear.” You don’t need the perfect words to deserve support.</p>
-        </details>
-        <details>
-          <summary>How do I help a friend who’s struggling?</summary>
-          <p>Listen without fixing, validate feelings, and offer options (“Would you like to vent, get advice, or be distracted?”). Encourage professional help if needed.</p>
-        </details>
-      </div>
+    <!-- Support Resources -->
+    <section id="resources" class="section">
+      <h2>Where to Get Support</h2>
+      <p class="sub">You don’t need to struggle alone. Here are safe places to reach out.</p>
+
+      <ul style="list-style:none; padding:0; display:grid; gap:.8rem;">
+        <li><a href="https://www.7cups.com" target="_blank" style="color:var(--brand)">💬 7 Cups</a> – Free emotional support chat.</li>
+        <li><a href="https://yourdost.com" target="_blank" style="color:var(--brand)">🧑‍⚕️ YourDOST</a> – Online mental health counseling (India).</li>
+        <li><a href="https://mentalhealth.gov" target="_blank" style="color:var(--brand)">📘 MentalHealth.gov</a> – Learn about mental health conditions.</li>
+      </ul>
     </section>
+
   </main>
 
   <footer>
-    Made with care ♡ · Photos via Unsplash · This page is not a substitute for professional care.
+    You deserve peace. This page was made with care.
   </footer>
+
 </body>
 </html>
