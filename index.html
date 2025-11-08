@@ -1,195 +1,253 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mental Wellness & Emotional Healing</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MindEase - Mental Wellness Support</title>
 
 <style>
-:root{
-  --bg:#faf7f4;
-  --text:#2d2d2d;
-  --muted:#6b6b6b;
-  --card:#ffffff;
-  --accent:#7ba9ff;
-  --accent2:#ffa8c0;
-  --radius:18px;
-  --shadow:0 10px 30px rgba(0,0,0,.08);
+:root {
+  --bg: #f8fbff;
+  --text: #263238;
+  --muted: #607d8b;
+  --accent: #6ab8ff;
+  --accent-soft: #e8f4ff;
+  --card: rgba(255,255,255,0.6);
+  --shadow: 0 20px 45px rgba(0,0,0,0.08);
+  --radius: 22px;
+  --blur: blur(18px);
+  font-family: "Inter", system-ui, sans-serif;
 }
 
-body{
-  margin:0;
-  font-family:'Segoe UI', sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  line-height:1.8;
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
 }
 
 /* NAV */
-.nav{
-  position:sticky;top:0;background:#ffffffaa;
-  backdrop-filter:blur(10px);
-  border-bottom:1px solid #eaeaea;
-  box-shadow:0 3px 15px rgba(0,0,0,.05);
-  z-index:50;
+.nav {
+  position: sticky; top: 0;
+  backdrop-filter: blur(12px);
+  background: rgba(255,255,255,0.7);
+  border-bottom: 1px solid #dfeaf1;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  z-index: 10;
 }
-.nav-inner{
-  max-width:1100px;margin:auto;padding:1rem;
-  display:flex;justify-content:space-between;align-items:center;
+.nav-inner {
+  max-width: 1200px;
+  margin: auto;
+  padding: 1rem 1.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
-.nav a{
-  margin-left:1rem;text-decoration:none;font-weight:600;color:var(--muted);
+.brand {
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: var(--accent);
 }
-.nav a:hover{color:var(--accent);}
+.nav a {
+  margin-left: 1.3rem;
+  text-decoration: none;
+  font-weight: 600;
+  color: var(--muted);
+}
+.nav a:hover {
+  color: var(--accent);
+}
 
 /* HERO */
-.hero{
-  padding:4rem 1rem;text-align:center;
-  background:url("https://images.unsplash.com/photo-1543852786-1cf6624b9987?w=1600") center/cover no-repeat;
-  position:relative;
+.hero {
+  padding: 5rem 1rem;
+  text-align: center;
+  background: url("https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?w=1600") center/cover no-repeat;
+  position: relative;
 }
-.hero::before{
-  content:"";position:absolute;inset:0;
-  background:rgba(255,255,255,.75);
+.hero::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: rgba(255,255,255,0.75);
+  backdrop-filter: blur(6px);
 }
-.hero-content{position:relative;max-width:800px;margin:auto;}
-.hero h1{font-size:2.4rem;font-weight:700;margin-bottom:1rem;}
-.hero p{color:var(--muted);font-size:1.15rem;}
+.hero-content {
+  position: relative;
+  max-width: 750px;
+  margin: auto;
+}
+.hero h1 {
+  font-size: 2.6rem;
+  font-weight: 700;
+}
+.hero p {
+  color: var(--muted);
+  font-size: 1.15rem;
+}
 
-/* LAYOUT */
-.wrap{max-width:1100px;margin:auto;padding:3rem 1.5rem;}
-.section-title{text-align:center;margin-bottom:2rem;font-size:1.9rem;}
+/* CONTENT LAYOUT */
+.wrap {
+  max-width: 1200px;
+  margin: auto;
+  padding: 3rem 1.4rem;
+}
+.section-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2.5rem;
+}
 
 /* CARDS */
-.grid{display:grid;gap:1.5rem;}
-@media(min-width:760px){.grid{grid-template-columns:repeat(3,1fr);}}
-.card{
-  background:var(--card);border-radius:var(--radius);
-  box-shadow:var(--shadow);overflow:hidden;
-  display:flex;flex-direction:column;
+.grid {
+  display: grid;
+  gap: 2rem;
 }
-.thumb{
-  height:190px;background-size:cover;background-position:center;
+@media(min-width: 760px) {
+  .grid { grid-template-columns: repeat(3, 1fr); }
 }
-.card-body{padding:1.3rem;display:grid;gap:.5rem;}
-.card-body h3{margin:0;}
-.card-body p{color:var(--muted);}
-.chip{
-  background:var(--accent);color:white;font-size:.75rem;
-  padding:.35rem .7rem;border-radius:999px;width:max-content;
+.card {
+  backdrop-filter: var(--blur);
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  display: flex; flex-direction: column;
+}
+.thumb {
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+}
+.card-body {
+  padding: 1.4rem;
+}
+.card-body h3 {
+  margin-top: 0;
+  font-weight: 600;
+}
+.card-body p {
+  color: var(--muted);
 }
 
 /* FOOTER */
-footer{
-  margin-top:4rem;padding:1.5rem;text-align:center;
-  background:white;color:var(--muted);border-top:1px solid #ddd;
+footer {
+  margin-top: 4rem;
+  padding: 1.5rem;
+  text-align: center;
+  background: #ffffffa6;
+  backdrop-filter: blur(12px);
+  border-top: 1px solid #dfeaf1;
+  color: var(--muted);
 }
 </style>
 </head>
 
 <body>
 
+<!-- NAV -->
 <div class="nav">
   <div class="nav-inner">
-    <strong style="color:var(--accent);font-size:1.2rem;">MindEase</strong>
+    <div class="brand">MindEase</div>
     <div>
-      <a href="#understand">Feelings</a>
+      <a href="#feel">Feelings</a>
       <a href="#cope">Coping</a>
       <a href="#support">Support</a>
     </div>
   </div>
 </div>
 
+<!-- HERO -->
 <header class="hero">
   <div class="hero-content">
-    <h1>You are not alone. Your feelings matter.</h1>
-    <p>Healing is not about being strong. It’s about allowing yourself to be real, gentle, and human.</p>
+    <h1>You are safe. You are seen. You are not alone.</h1>
+    <p>Your feelings matter. Healing begins with understanding, gentleness, and time.</p>
   </div>
 </header>
 
-<main>
-
-<div class="wrap" id="understand">
-  <h2 class="section-title">Understanding Your Emotions</h2>
+<!-- FEELINGS -->
+<section id="feel" class="wrap">
+  <h2 class="section-title">Understanding Your Feelings</h2>
 
   <div class="grid">
 
     <div class="card">
-      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1516979187457-637abb4f9353?w=1600');"></div>
+      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1525253086316-d0c936c814f8?w=1600');"></div>
       <div class="card-body">
-        <span class="chip">Anxiety</span>
-        <h3>When your mind keeps racing</h3>
-        <p>Anxiety is your brain trying too hard to protect you. You’re not “overreacting.” You’re overwhelmed.</p>
-        <p><strong>Small step:</strong> Place your hand on your chest and breathe in slowly for 4 seconds, out for 6.</p>
+        <h3>Anxiety</h3>
+        <p>Your mind is not trying to hurt you. It is trying to protect you — just a little too hard.</p>
+        <p><strong>Try:</strong> Slow breathing and grounding your senses.</p>
       </div>
     </div>
 
     <div class="card">
-      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1529516540632-cd232f4b4da3?w=1600');"></div>
+      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=1600');"></div>
       <div class="card-body">
-        <span class="chip">Sadness / Depression</span>
-        <h3>When life feels heavy</h3>
-        <p>You are not lazy. You are exhausted from carrying invisible battles. Healing starts with one tiny action.</p>
-        <p><strong>Small step:</strong> Sit near sunlight for 2 minutes. Let your body breathe.</p>
+        <h3>Sadness / Low Mood</h3>
+        <p>You are not weak. You are tired from fighting battles that others cannot see.</p>
+        <p><strong>Try:</strong> Small steps. Open curtains. Drink water. Message one friend.</p>
       </div>
     </div>
 
     <div class="card">
-      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1600');"></div>
+      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1600');"></div>
       <div class="card-body">
-        <span class="chip" style="background:var(--accent2)">Stress & Burnout</span>
-        <h3>When you're tired but keep going</h3>
-        <p>Your worth is not based on productivity. Rest is not a reward, it is necessary.</p>
-        <p><strong>Small step:</strong> Take a 90-second pause. Close your eyes. Let your shoulders drop.</p>
+        <h3>Stress & Burnout</h3>
+        <p>Your value is not measured by productivity. You deserve rest simply because you exist.</p>
+        <p><strong>Try:</strong> Take a 60-second quiet pause.</p>
       </div>
     </div>
 
   </div>
-</div>
+</section>
 
-<div class="wrap" id="cope">
-  <h2 class="section-title">How to Cope Gently</h2>
+<!-- COPING -->
+<section id="cope" class="wrap">
+  <h2 class="section-title">Gentle Coping Tools</h2>
 
   <div class="grid">
+
     <div class="card">
-      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1505483531331-8325b13b6b05?w=1600');"></div>
+      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?w=1600');"></div>
       <div class="card-body">
-        <h3>Grounding Yourself</h3>
-        <p>Name 5 things you can see, 4 things you can touch, 3 things you hear, 2 things you smell, 1 thing you love.</p>
+        <h3>Breathing Reset</h3>
+        <p>Inhale 4 • Hold 4 • Exhale 6. This tells your nervous system “I am safe.”</p>
       </div>
     </div>
 
     <div class="card">
-      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1556020685-ae41abfc9365?w=1600');"></div>
+      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1518887559646-8be811865e0e?w=1600');"></div>
       <div class="card-body">
         <h3>Talk to Someone Safe</h3>
-        <p>Say: “I don't need fixing. I just need you to listen.” Connection heals the nervous system.</p>
+        <p>You don’t need perfect words. You just need connection.</p>
       </div>
     </div>
 
     <div class="card">
-      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1477118476589-bff2c5c4cfbb?w=1600');"></div>
+      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6?w=1600');"></div>
       <div class="card-body">
         <h3>Gentle Movement</h3>
-        <p>A slow walk. Stretching. Breathing with music. Movement releases emotional weight from the body.</p>
+        <p>A short walk, stretching, or loosening your shoulders can release stored tension.</p>
       </div>
     </div>
-  </div>
-</div>
 
-<div class="wrap" id="support">
+  </div>
+</section>
+
+<!-- SUPPORT -->
+<section id="support" class="wrap">
   <h2 class="section-title">You Deserve Support</h2>
   <p style="text-align:center;color:var(--muted);max-width:650px;margin:auto;">
-  Reaching out is not weakness. It is a brave step toward healing.</p>
+    Reaching out is a strength, not a weakness.
+  </p>
 
   <ul style="list-style:none;padding:0;text-align:center;margin-top:1.5rem;">
-    <li><a href="https://www.7cups.com" target="_blank" style="color:var(--accent);font-weight:600;">💬 7 Cups</a> — Free anonymous emotional support</li>
-    <li><a href="https://yourdost.com" target="_blank" style="color:var(--accent);font-weight:600;">🌿 YourDOST</a> — Mental health counseling (India)</li>
+    <li><a href="https://www.7cups.com" target="_blank" style="color:var(--accent);font-weight:600;">💬 7 Cups</a> — Free emotional support</li>
+    <li><a href="https://yourdost.com" target="_blank" style="color:var(--accent);font-weight:600;">🌿 YourDOST</a> — Counseling support (India)</li>
   </ul>
-</div>
+</section>
 
 <footer>
-You are worthy of rest, love, and peace. Take your time. You’re healing.
+Your presence matters. One small breath at a time. 💙
 </footer>
 
 </body>
