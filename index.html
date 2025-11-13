@@ -1,59 +1,54 @@
-<!-- Save as index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>BloomCare — Mental Health Awareness</title>
-<meta name="description" content="BloomCare — calming mental health awareness site with tools, resources and support." />
+<title>MindWave — Mental Health Awareness</title>
+<meta name="description" content="MindWave — mental health awareness: learn signs, challenges, practical tips, helplines and calming tools." />
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#0f1724; --panel:#0b1220; --muted:#9aa4bb; --accent:#8b5cf6; --accent2:#06b6d4;
-    --glass: rgba(255,255,255,0.04);
-    --radius:18px;
+    --bg:#fffdfb;
+    --muted:#6b7280;
+    --accent1:#ffd6e8;
+    --accent2:#d7f5ff;
+    --card:#ffffff;
+    --radius:16px;
   }
   *{box-sizing:border-box}
-  html,body{height:100%;margin:0;font-family:Poppins,system-ui,Segoe UI,Roboto,Arial;background:linear-gradient(180deg,#071026 0%, #0f1724 100%);color:#e6eef8}
-  a{color:inherit}
+  html,body{height:100%;margin:0;font-family:Poppins,system-ui,Segoe UI,Roboto,Arial;background:linear-gradient(180deg,#f8fbff,#fffdfb);color:#111827}
   .container{max-width:1100px;margin:0 auto;padding:28px}
-  header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:8px}
-  .brand{display:flex;align-items:center;gap:14px}
-  .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-weight:800;color:white;font-size:20px;box-shadow:0 6px 20px rgba(107,70,193,0.18)}
+  header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:6px}
+  .brand{display:flex;align-items:center;gap:12px}
+  .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent1),var(--accent2));display:flex;align-items:center;justify-content:center;font-weight:800;color:#0f1724;font-size:20px;box-shadow:0 10px 30px rgba(99,102,241,0.06)}
   nav a{margin-left:14px;color:var(--muted);text-decoration:none;font-weight:600;font-size:14px}
   /* HERO */
   .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;padding:36px 0}
-  .hero-left h1{font-size:clamp(28px,5.2vw,52px);margin:0;line-height:1.02}
+  .hero-left h1{font-size:clamp(28px,5.2vw,46px);margin:0;line-height:1.02}
   .lead{color:var(--muted);margin-top:12px;font-size:16px}
   .cta{margin-top:18px;display:flex;gap:12px}
   .btn{padding:10px 16px;border-radius:12px;border:0;font-weight:700;cursor:pointer}
-  .btn-primary{background:linear-gradient(90deg,var(--accent),var(--accent2));color:#041124;box-shadow:0 10px 28px rgba(99,102,241,0.12)}
-  .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
+  .btn-primary{background:linear-gradient(90deg,#6d28d9,#06b6d4);color:white;box-shadow:0 10px 28px rgba(99,102,241,0.12)}
+  .btn-ghost{background:transparent;border:1px solid rgba(16,24,40,0.04);color:var(--muted)}
   /* panel */
-  .panel{background:var(--panel);padding:20px;border-radius:16px;box-shadow:0 8px 30px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.03)}
-  .stat-row{display:flex;justify-content:space-between;gap:12px;align-items:center}
+  .panel{background:var(--card);padding:18px;border-radius:16px;box-shadow:0 8px 30px rgba(15,23,42,0.06);border:1px solid rgba(2,6,23,0.04)}
   .tiny{font-size:13px;color:var(--muted)}
-  /* mood tracker */
-  .mood-row{display:flex;gap:10px;align-items:center;margin-top:12px}
-  input[type=range]{width:100%}
   /* breathing */
   .breath-wrap{display:flex;flex-direction:column;align-items:center;gap:10px;padding-top:8px}
-  .breath-circle{width:170px;height:170px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 35% 35%, rgba(139,92,246,0.15), transparent 30%), radial-gradient(circle at 70% 70%, rgba(6,182,212,0.12), transparent 36%);transition:transform .5s, box-shadow .4s}
-  .phase{font-weight:700;color:#e9f2ff}
+  .breath-circle{width:170px;height:170px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 35% 35%, rgba(99,102,241,0.12), transparent 30%), radial-gradient(circle at 70% 70%, rgba(6,182,212,0.09), transparent 36%);transition:transform .45s}
+  .phase{font-weight:700;color:#0f1724}
   /* sections */
   .section{margin-top:36px}
   .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-top:18px}
-  .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:14px;border:1px solid rgba(255,255,255,0.03);box-shadow:0 10px 30px rgba(5,8,20,0.6)}
-  .card h3{margin:0 0 8px 0}
-  /* gallery */
+  .card{background:linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.98));padding:18px;border-radius:14px;border:1px solid rgba(2,6,23,0.03);box-shadow:0 10px 30px rgba(16,24,40,0.04)}
   .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:16px}
-  .gallery img{width:100%;height:150px;object-fit:cover;border-radius:12px;box-shadow:0 8px 30px rgba(2,6,23,0.6)}
-  /* resources */
+  .gallery img{width:100%;height:150px;object-fit:cover;border-radius:12px;box-shadow:0 8px 20px rgba(2,6,23,0.06)}
   .resources{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}
-  .resource{min-width:220px;padding:14px;border-radius:12px;background:linear-gradient(90deg, rgba(139,92,246,0.06), rgba(6,182,212,0.03));border:1px solid rgba(255,255,255,0.03)}
-  /* quote */
-  .quote{margin-top:28px;padding:22px;border-radius:14px;background:linear-gradient(90deg, rgba(139,92,246,0.08), rgba(6,182,212,0.05));font-weight:700;text-align:center;color:#f8fbff}
+  .resource{min-width:220px;padding:14px;border-radius:12px;background:linear-gradient(90deg, rgba(139,92,246,0.04), rgba(6,182,212,0.02));border:1px solid rgba(2,6,23,0.03)}
+  .quote{margin-top:28px;padding:22px;border-radius:12px;background:linear-gradient(90deg,#fff7d6,#ffd6e0);font-weight:700;text-align:center;color:#0b1220}
   footer{margin-top:40px;padding:22px;text-align:center;color:var(--muted);font-size:14px}
+  .h2{font-size:22px;margin:0}
+  .challenge-list{list-style:disc;padding-left:18px;color:var(--muted);margin-top:10px}
   /* responsive */
   @media (max-width:980px){.hero{grid-template-columns:1fr}.hero-right{order:2}.hero-left{order:1}}
   @media (max-width:520px){.logo{width:46px;height:46px}.hero-left h1{font-size:28px}}
@@ -63,15 +58,15 @@
   <div class="container">
     <header>
       <div class="brand">
-        <div class="logo">B</div>
+        <div class="logo">MW</div>
         <div>
-          <div style="font-weight:700">BloomCare</div>
+          <div style="font-weight:700">MindWave</div>
           <div style="font-size:12px;color:var(--muted)">Mental Health Awareness</div>
         </div>
       </div>
       <nav>
         <a href="#about">About</a>
-        <a href="#tools">Tools</a>
+        <a href="#challenges">Challenges</a>
         <a href="#resources">Resources</a>
       </nav>
     </header>
@@ -79,8 +74,8 @@
     <!-- HERO -->
     <section class="hero">
       <div class="hero-left">
-        <h1>BloomCare — A calming space for mental well-being</h1>
-        <p class="lead">A creative, presentation-ready site to raise awareness about mental health. Features calming visuals, quick tools, and resources to help people cope and reach out for support.</p>
+        <h1>MindWave — Mental Health Awareness</h1>
+        <p class="lead">A clear, presentation-ready site that explains what mental health awareness is, common challenges people face, and practical steps for support and self-care.</p>
         <div class="cta">
           <button class="btn btn-primary" id="start-breathe">Try Breathing</button>
           <button class="btn btn-ghost" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">Learn More</button>
@@ -88,49 +83,27 @@
       </div>
 
       <div class="hero-right">
-        <div class="panel">
-          <div class="stat-row">
-            <div>
-              <div class="tiny">Today's Mood</div>
-              <div style="font-weight:700;font-size:18px">Track & reflect</div>
-            </div>
-            <div style="text-align:right">
-              <div class="tiny">Entries</div>
-              <div style="font-weight:700;font-size:20px" id="entryCount">0</div>
-            </div>
-          </div>
+        <div class="panel" style="text-align:left">
+          <div class="tiny">Calm breathing exercise</div>
+          <div style="font-weight:700;margin-top:8px">Wave breathing — 4s inhale • 4s hold • 4s exhale</div>
 
-          <!-- Mood tracker -->
-          <div style="margin-top:12px">
-            <label class="tiny">Mood: <span id="moodVal">6</span>/10</label>
-            <div class="mood-row">
-              <input id="moodRange" type="range" min="1" max="10" value="6" />
-              <button class="btn" id="saveMood" style="background:linear-gradient(90deg,var(--accent),var(--accent2));color:#041124;border-radius:10px">Save</button>
-            </div>
-          </div>
-
-          <hr style="margin:14px 0;border:none;border-top:1px solid rgba(255,255,255,0.03)">
-
-          <!-- Breathing -->
-          <div style="text-align:center">
-            <div class="breath-wrap">
-              <div class="breath-circle" id="breathCircle"><div style="text-align:center"><div class="phase" id="phase">Ready</div><div style="font-size:12px;color:var(--muted);margin-top:6px">4 - 4 - 4 breathing</div></div></div>
-              <div style="display:flex;gap:8px;justify-content:center;margin-top:8px">
-                <button class="btn btn-ghost" id="breathStart" style="border-radius:10px">Start</button>
-                <button class="btn btn-ghost" id="breathStop" style="border-radius:10px">Stop</button>
-              </div>
+          <div style="text-align:center;margin-top:12px" class="breath-wrap">
+            <div class="breath-circle" id="breathCircle"><div style="text-align:center"><div class="phase" id="phase">Ready</div><div style="font-size:12px;color:var(--muted);margin-top:6px">4 - 4 - 4 breathing</div></div></div>
+            <div style="display:flex;gap:8px;justify-content:center;margin-top:8px">
+              <button class="btn btn-ghost" id="breathStart" style="border-radius:10px">Start</button>
+              <button class="btn btn-ghost" id="breathStop" style="border-radius:10px">Stop</button>
             </div>
           </div>
         </div>
 
         <div style="margin-top:14px;display:flex;gap:12px">
-          <div class="panel" style="flex:1;padding:14px;">
+          <div class="panel" style="flex:1;padding:12px;">
             <div class="tiny">Quick Tip</div>
             <div style="font-weight:700;margin-top:6px">Take a short walk</div>
-            <div style="font-size:13px;color:var(--muted);margin-top:8px">Even 5 minutes outside can reset your mood and reduce stress.</div>
+            <div style="font-size:13px;color:var(--muted);margin-top:8px">A brief walk outside can reset mood and reduce stress.</div>
           </div>
 
-          <div class="panel" style="width:140px;display:flex;align-items:center;justify-content:center;font-weight:700;background:linear-gradient(90deg,var(--accent),var(--accent2));color:#041124;border-radius:12px">
+          <div class="panel" style="width:140px;display:flex;align-items:center;justify-content:center;font-weight:700;background:linear-gradient(90deg,#ffd6e8,#d7f5ff);color:#0f1724;border-radius:12px">
             Need Help?
           </div>
         </div>
@@ -140,36 +113,63 @@
     <!-- ABOUT -->
     <section id="about" class="section">
       <div class="card" style="text-align:left">
-        <h2 style="margin-top:0">About BloomCare</h2>
-        <p style="color:var(--muted);font-size:15px">BloomCare is designed to create a calm, approachable environment to raise awareness about mental health. The website focuses on quick, practical tools and trustworthy resources so people feel supported and can find help when they need it. Visuals and colors are chosen to be soothing and non-intrusive.</p>
+        <h2 style="margin-top:0" class="h2">What is Mental Health Awareness?</h2>
+        <p style="color:var(--muted);font-size:15px;margin-top:8px">
+          Mental health awareness means increasing public understanding of mental health — what it is, how common mental health problems can be identified, and where to get help. Awareness reduces stigma, encourages people to seek help early, and builds communities that are more supportive and informed. It includes learning signs and symptoms, knowing practical ways to support someone in distress, and promoting self-care and prevention strategies.
+        </p>
+
+        <h3 style="margin-top:14px">Why it matters</h3>
+        <p style="color:var(--muted);font-size:14px;margin-top:6px">
+          Greater awareness makes it easier for people to access the support they need and can reduce the isolation and shame that often stop people from seeking help. Awareness campaigns, education in schools and workplaces, and open conversations help reshape how society treats emotional and psychological struggles.
+        </p>
 
         <div class="gallery" style="margin-top:14px">
-          <img src="https://images.pexels.com/photos/4101143/pexels-photo-4101143.jpeg" alt="calm landscape" />
-          <img src="https://images.pexels.com/photos/897817/pexels-photo-897817.jpeg" alt="support" />
-          <img src="https://images.pexels.com/photos/3759657/pexels-photo-3759657.jpeg" alt="mindfulness" />
+          <img src="https://images.pexels.com/photos/4148862/pexels-photo-4148862.jpeg" alt="support" />
+          <img src="https://images.pexels.com/photos/3685539/pexels-photo-3685539.jpeg" alt="calm" />
+          <img src="https://images.pexels.com/photos/4050286/pexels-photo-4050286.jpeg" alt="mindful" />
         </div>
+      </div>
+    </section>
+
+    <!-- CHALLENGES -->
+    <section id="challenges" class="section">
+      <div class="card" style="text-align:left">
+        <h2 class="h2">Challenges We Face</h2>
+        <p style="color:var(--muted);font-size:14px;margin-top:8px">People with mental health problems often face barriers that make it harder to get help. Common challenges include:</p>
+        <ul class="challenge-list">
+          <li><strong>Stigma and discrimination:</strong> fear of being judged or seen as weak often prevents people from reaching out.</li>
+          <li><strong>Lack of awareness:</strong> not recognizing symptoms or not knowing where to find reliable support.</li>
+          <li><strong>Limited access to care:</strong> cost, long wait times, and lack of nearby services can block treatment.</li>
+          <li><strong>Self-stigma and isolation:</strong> internalized shame can reduce help-seeking and increase loneliness.</li>
+          <li><strong>Information overload & misinformation:</strong> confusion from unreliable sources makes decisions harder.</li>
+        </ul>
+
+        <h3 style="margin-top:12px">Common signs to watch for</h3>
+        <p style="color:var(--muted);font-size:14px;margin-top:6px">
+          Persistent sadness or low mood, excessive worry, withdrawal from friends and activities, changes in sleep or appetite, difficulty concentrating, or sudden changes in behaviour or mood may all be signs that someone needs support.
+        </p>
       </div>
     </section>
 
     <!-- TOOLS -->
     <section id="tools" class="section">
-      <h2 style="margin:0">Tools & Practices</h2>
+      <h2 style="margin:0">Practical Tips & Self-Care</h2>
       <div class="card-grid">
         <div class="card">
-          <h3>🌿 Grounding — 5-4-3-2-1</h3>
-          <p style="color:var(--muted)">Look for 5 things you see, 4 you feel, 3 you hear, 2 you smell and 1 you can taste. This brings attention to the present moment.</p>
+          <h3>Connect with others</h3>
+          <p style="color:var(--muted)">Good relationships provide emotional support. Reach out to friends, family, or trusted people — sharing helps reduce burden.</p>
         </div>
         <div class="card">
-          <h3>🧘 Mini-Mindfulness (2–5 min)</h3>
-          <p style="color:var(--muted)">Sit quietly, follow your breath, notice sensations without judgment. Start with 2 minutes and increase gradually.</p>
+          <h3>Be active & sleep well</h3>
+          <p style="color:var(--muted)">Physical activity and consistent sleep routines support mood and resilience.</p>
         </div>
         <div class="card">
-          <h3>📝 Journaling Prompt</h3>
-          <p style="color:var(--muted)">Write: \"One thing I did well today\" and \"One small step for tomorrow\" — helps reframe perspective.</p>
+          <h3>Learn about mental health</h3>
+          <p style="color:var(--muted)">Education reduces fear. Use reliable sources to learn signs, treatments, and coping strategies.</p>
         </div>
         <div class="card">
-          <h3>🫶 Reach-Out Tips</h3>
-          <p style="color:var(--muted)">If overwhelmed, tell a trusted friend or call a helpline. Asking for help is courage, not weakness.</p>
+          <h3>Seek professional help</h3>
+          <p style="color:var(--muted)">If problems persist, consult a mental health professional or local clinic for assessment and care.</p>
         </div>
       </div>
     </section>
@@ -177,44 +177,25 @@
     <!-- RESOURCES -->
     <section id="resources" class="section">
       <div class="card" style="text-align:left">
-        <h2 style="margin-top:0">Resources & Helplines</h2>
-        <p style="color:var(--muted)">If you are in immediate danger contact local emergency services. For non-emergency support, these resources may help — please add local numbers for your region.</p>
+        <h2 style="margin-top:0" class="h2">Resources & Helplines</h2>
+        <p style="color:var(--muted);font-size:14px;margin-top:8px">If you or someone else is in immediate danger, contact local emergency services. For non-emergency support:</p>
         <div class="resources">
-          <div class="resource"><strong>India (example):</strong><br>National Helpline: 9152987821 (add regional)</div>
-          <div class="resource"><strong>International:</strong><br>Find a helpline at <a href="https://www.iasp.info/resources/Crisis_Centres/" target="_blank" rel="noopener" style="color:#cfeeff">iasp.info</a></div>
-          <div class="resource"><strong>Self-help:</strong><br>Trusted guides, therapy directories, and local clinics</div>
+          <div class="resource"><strong>Learn more:</strong><br><a href="https://mind.help/topic/mental-health-awareness/" target="_blank" rel="noopener" style="color:#0f1724">Mental health awareness — Mind.help</a></div>
+          <div class="resource"><strong>International directory:</strong><br><a href="https://www.iasp.info/resources/Crisis_Centres/" target="_blank" rel="noopener" style="color:#0f1724">IASP crisis centres</a></div>
+          <div class="resource"><strong>Self-care guides:</strong><br>Local clinics, helplines, and therapist directories</div>
         </div>
       </div>
     </section>
 
-    <div class="quote">"Small steps every day bring steady change — be kind to yourself."</div>
+    <div class="quote">"Awareness opens the door to support — talking helps and seeking help is a sign of strength."</div>
 
     <footer>
       <div style="font-size:14px;color:var(--muted)">Disclaimer: This site provides general information and self-help tools. It is not a substitute for professional medical advice, diagnosis, or treatment.</div>
-      <div style="margin-top:8px">© 2025 BloomCare • Designed for mental health awareness</div>
+      <div style="margin-top:8px">© 2025 MindWave • Mental Health Awareness</div>
     </footer>
   </div>
 
 <script>
-  // Mood tracker (localStorage)
-  const moodRange = document.getElementById('moodRange');
-  const moodVal = document.getElementById('moodVal');
-  const saveBtn = document.getElementById('saveMood');
-  const entryCount = document.getElementById('entryCount');
-  const stored = JSON.parse(localStorage.getItem('bloom_moods') || '[]');
-  entryCount.textContent = stored.length;
-  if(stored[0]) moodVal.textContent = stored[0].value;
-
-  moodRange.addEventListener('input', ()=>{moodVal.textContent = moodRange.value});
-  saveBtn.addEventListener('click', ()=>{
-    const entry = {value: moodRange.value, time: new Date().toISOString()};
-    const arr = JSON.parse(localStorage.getItem('bloom_moods') || '[]');
-    arr.unshift(entry);
-    localStorage.setItem('bloom_moods', JSON.stringify(arr.slice(0,50)));
-    entryCount.textContent = arr.length;
-    alert('Mood saved locally ✅');
-  });
-
   // Breathing 4-4-4 cycle
   let breathInterval = null;
   const breathStart = document.getElementById('breathStart');
@@ -223,7 +204,6 @@
   const circle = document.getElementById('breathCircle');
   const startBtn = document.getElementById('start-breathe');
   startBtn.addEventListener('click', ()=> breathStart.click());
-
   breathStart.addEventListener('click', startBreath);
   breathStop.addEventListener('click', stopBreath);
 
@@ -235,7 +215,7 @@
     breathInterval = setInterval(()=>{
       count--;
       if(count>0){
-        // keep current phase
+        // keep current phase visible
       } else {
         step++; count = 4;
         const phase = step % 3 === 0 ? 'Inhale' : step % 3 === 1 ? 'Hold' : 'Exhale';
