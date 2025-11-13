@@ -3,162 +3,198 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HealMind — Mental Health Awareness</title>
+  <title>SereneMind — Mental Health Awareness</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <style>
     body {
       margin: 0;
       font-family: "Poppins", sans-serif;
-      background: #f5f7ff;
+      background: #eef3ff;
+      color: #2a2a2a;
+      overflow-x: hidden;
+    }
+
+    /* SOFT FLOAT ANIMATION */
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-12px); }
+      100% { transform: translateY(0px); }
     }
 
     /* HERO */
     .hero {
       height: 90vh;
-      background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+      background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
         url("https://images.pexels.com/photos/4101143/pexels-photo-4101143.jpeg") center/cover no-repeat;
       display: flex;
       justify-content: center;
       align-items: center;
       text-align: center;
       color: white;
-      padding: 20px;
+      position: relative;
+      animation: fadeIn 1.6s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
     .hero h1 {
-      font-size: 60px;
-      margin: 0;
+      font-size: 70px;
       font-weight: 700;
+      margin: 0;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.4);
+      animation: float 6s ease-in-out infinite;
     }
 
     .hero p {
       margin-top: 20px;
-      font-size: 20px;
-      max-width: 650px;
+      font-size: 22px;
+      max-width: 700px;
       margin-left: auto;
       margin-right: auto;
+      opacity: 0.95;
     }
 
-    /* SECTIONS */
+    /* GLASS CARD SECTIONS */
     .section {
-      max-width: 1100px;
+      max-width: 1150px;
       margin: auto;
-      padding: 60px 20px;
+      padding: 70px 25px;
       text-align: center;
     }
 
     .section h2 {
-      font-size: 34px;
-      color: #3659e3;
-      margin-bottom: 10px;
+      font-size: 38px;
+      color: #3e57ea;
+      margin-bottom: 12px;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
 
-    .section p {
-      color: #555;
-      font-size: 18px;
+    .glass-box {
+      background: rgba(255, 255, 255, 0.55);
+      padding: 25px;
+      border-radius: 18px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+      line-height: 1.7;
       max-width: 850px;
-      margin: 20px auto;
+      margin: 20px auto 40px auto;
+      color: #444;
+      font-size: 18px;
     }
 
-    /* IMAGE SPLIT */
-    .split {
+    /* IMAGES */
+    .img-row {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 25px;
       margin-top: 40px;
     }
 
-    .split img {
+    .img-row img {
       width: 100%;
-      border-radius: 20px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
-    }
-
-    /* CARDS */
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      margin-top: 40px;
-    }
-
-    .card {
-      background: #fff;
-      padding: 20px;
-      border-radius: 15px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      border-radius: 22px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
       transition: 0.3s;
     }
 
+    .img-row img:hover {
+      transform: scale(1.04);
+    }
+
+    /* FEATURE CARDS */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      margin-top: 45px;
+    }
+
+    .card {
+      background: white;
+      padding: 22px;
+      border-radius: 18px;
+      box-shadow: 0 5px 18px rgba(0,0,0,0.1);
+      transition: 0.25s;
+      font-size: 18px;
+    }
+
     .card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-8px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
     }
 
     /* QUOTE */
     .quote {
-      background: linear-gradient(135deg, #4f46e5, #0ea5e9);
-      padding: 80px 20px;
+      background: linear-gradient(135deg, #6366f1, #0ea5e9);
+      padding: 100px 25px;
       text-align: center;
       color: white;
-      font-size: 28px;
+      font-size: 30px;
       margin-top: 50px;
+      border-radius: 40px 40px 0 0;
+      text-shadow: 0 4px 15px rgba(0,0,0,0.2);
     }
 
     /* FOOTER */
     footer {
-      background: #eef0ff;
-      padding: 20px;
+      background: #dfe3ff;
+      padding: 25px;
       text-align: center;
-      font-size: 16px;
-      color: #555;
-      margin-top: 40px;
+      font-size: 17px;
+      color: #444;
+      margin-top: 0;
     }
   </style>
 </head>
+
 <body>
   <!-- HERO -->
   <div class="hero">
     <div>
-      <h1>HealMind</h1>
-      <p>Raising awareness, breaking stigma, and promoting wellness for a healthier tomorrow.</p>
+      <h1>SereneMind</h1>
+      <p>Inspiring awareness, supporting healing, and promoting emotional balance worldwide.</p>
     </div>
   </div>
 
   <!-- ABOUT -->
   <div class="section">
-    <h2>Your Mental Health Matters</h2>
-    <p>
-      Mental health is more than the absence of mental illness — it's about emotional balance,
-      resilience, self-awareness, and maintaining a positive sense of identity. This platform helps
-      people learn, heal, and grow.
-    </p>
+    <h2>Your Mental Health Is Your Strength</h2>
+    <div class="glass-box">
+      Mental health influences how we think, feel, and act. It shapes how we handle stress,
+      relate to others, and make decisions. Understanding your emotions and taking time to heal
+      is the greatest form of self-care.
+    </div>
 
-    <div class="split">
+    <div class="img-row">
       <img src="https://images.pexels.com/photos/897817/pexels-photo-897817.jpeg" />
       <img src="https://images.pexels.com/photos/3759657/pexels-photo-3759657.jpeg" />
+      <img src="https://images.pexels.com/photos/205097/pexels-photo-205097.jpeg" />
     </div>
   </div>
 
   <!-- FEATURES -->
   <div class="section">
-    <h2>How to Take Care of Your Mind</h2>
-
+    <h2>Build a Healthier Mind</h2>
     <div class="cards">
-      <div class="card"><h3>✨ Practice Self-Care</h3><p>Spend time with yourself, rest, reflect, and maintain healthy habits.</p></div>
-      <div class="card"><h3>🧘 Mindfulness</h3><p>Calm your mind through meditation and breathing exercises.</p></div>
-      <div class="card"><h3>🤝 Stay Connected</h3><p>Talk to people you trust. Sharing reduces emotional burden.</p></div>
-      <div class="card"><h3>📖 Learn & Grow</h3><p>Understanding emotions helps you manage them better.</p></div>
+      <div class="card"><h3>✨ Self-Care Rituals</h3><p>Small routines that nourish your emotional energy.</p></div>
+      <div class="card"><h3>🧘 Guided Mindfulness</h3><p>Practice staying present, calm, and grounded.</p></div>
+      <div class="card"><h3>🤝 Emotional Support</h3><p>You are not alone — reach out and stay connected.</p></div>
+      <div class="card"><h3>📚 Learn & Grow</h3><p>Understanding emotions is the start of healing.</p></div>
+      <div class="card"><h3>🌿 Stress Relief Tools</h3><p>Breathing, journaling, grounding techniques & more.</p></div>
     </div>
   </div>
 
   <!-- QUOTE -->
   <div class="quote">
-    "It’s okay to not be okay — but it’s not okay to stay silent."
+    "Healing doesn’t mean the damage never existed — it means it no longer controls your life."
   </div>
 
   <!-- FOOTER -->
   <footer>
-    © 2025 HealMind • Built for mental health awareness 🌿
+    © 2025 SereneMind • Designed for global mental health awareness 🌿
   </footer>
 </body>
 </html>
