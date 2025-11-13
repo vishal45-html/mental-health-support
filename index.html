@@ -3,195 +3,191 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>MindWave — Creative Mental Health Awareness</title>
+<title>MindWave Dark — Aesthetic Mental Health Awareness</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
 <style>
+  :root{
+    --bg: #0f1117;
+    --card: #161922;
+    --text: #e5e7f3;
+    --muted: #9aa0b5;
+    --accent1: #8f78ff;
+    --accent2: #ff77c7;
+    --accent3: #62d6ff;
+  }
+
   body {
     margin: 0;
     font-family: "Poppins", sans-serif;
-    background: #f8fbff;
+    background: var(--bg);
+    color: var(--text);
     overflow-x: hidden;
   }
 
-  /* FLOATING BLOBS */
+  /* FLOATING NEON BLOBS */
   .blob {
     position: absolute;
+    width: 480px;
+    height: 480px;
+    background: radial-gradient(circle at 30% 30%, var(--accent1), transparent 70%);
+    filter: blur(100px);
+    opacity: 0.4;
+    animation: float 12s ease-in-out infinite;
+  }
+  .blob2 {
     width: 420px;
     height: 420px;
-    background: radial-gradient(circle at 30% 30%, #aee6ff, #72c9ff);
-    border-radius: 50% 40% 60% 55% / 60% 40% 55% 50%;
-    filter: blur(60px);
-    opacity: 0.55;
-    animation: blobMove 14s infinite ease-in-out;
-  }
-
-  .blob2 {
-    width: 380px;
-    height: 380px;
-    background: radial-gradient(circle at 30% 30%, #ffc6e0, #ff98c0);
+    background: radial-gradient(circle at 30% 30%, var(--accent2), transparent 70%);
     animation-direction: reverse;
   }
+  .blob3 {
+    width: 380px;
+    height: 380px;
+    background: radial-gradient(circle at 30% 30%, var(--accent3), transparent 70%);
+    animation-duration: 16s;
+  }
 
-  @keyframes blobMove {
-    0% { transform: translate(0px, 0px) scale(1); }
-    50% { transform: translate(80px, -40px) scale(1.15); }
-    100% { transform: translate(0px, 0px) scale(1); }
+  @keyframes float {
+    0% { transform: translate(0,0) scale(1); }
+    50% { transform: translate(80px,-60px) scale(1.2); }
+    100% { transform: translate(0,0) scale(1); }
   }
 
   /* HERO */
   .hero {
     position: relative;
-    padding: 120px 20px;
+    padding: 140px 20px;
     text-align: center;
-    z-index: 3;
+    z-index: 2;
   }
-
   .hero h1 {
-    font-size: 62px;
+    font-size: 60px;
     font-weight: 700;
-    color: #1d3557;
+    background: linear-gradient(90deg, var(--accent1), var(--accent2));
+    -webkit-background-clip: text;
+    color: transparent;
   }
   .hero p {
-    max-width: 700px;
-    margin: 15px auto;
-    color: #3c4a5e;
+    max-width: 720px;
+    margin: 18px auto;
+    color: var(--muted);
     font-size: 18px;
   }
 
-  /* WAVES */
-  .wave {
-    position: relative;
-    width: 100%;
-    height: 140px;
-    background: url('https://i.imgur.com/HhZ5r1k.png') repeat-x;
-    background-size: contain;
-    animation: waveMove 12s linear infinite;
-    margin-top: -40px;
-  }
-
-  @keyframes waveMove {
-    from { background-position-x: 0; }
-    to { background-position-x: 1200px; }
-  }
-
-  /* GLASS SECTION */
-  .glass {
-    margin: 60px auto;
-    padding: 30px;
+  /* NEON CARDS */
+  .section {
+    margin: 70px auto;
     max-width: 1100px;
-    background: rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(14px);
-    border-radius: 25px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    padding: 30px;
+    border-radius: 22px;
+    background: var(--card);
+    box-shadow: 0 0 25px rgba(140,100,255,0.1);
     text-align: center;
   }
-  .glass h2 {
-    font-size: 36px;
-    color: #1f4e79;
+  .section h2 {
+    font-size: 34px;
+    background: linear-gradient(90deg, var(--accent1), var(--accent3));
+    -webkit-background-clip: text;
+    color: transparent;
   }
-  .glass p {
+  .section p {
+    color: var(--muted);
     max-width: 800px;
-    margin: auto;
-    color: #4b4b4b;
-    font-size: 18px;
+    margin: 12px auto;
   }
 
-  /* UNIQUE CARDS */
+  /* FEATURES */
   .cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 22px;
+    gap: 25px;
     margin-top: 35px;
   }
-
   .card {
-    padding: 20px;
-    border-radius: 20px;
-    background: linear-gradient(145deg, #ffffff, #e9f5ff);
-    box-shadow: 6px 6px 20px #d0dbe8, -6px -6px 20px #ffffff;
-    transition: 0.4s;
-    font-weight: 600;
-    text-align: center;
+    padding: 22px;
+    background: #1b1f29;
+    border-radius: 18px;
+    box-shadow: 0 0 18px rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.05);
+    transition: 0.35s;
+    color: var(--text);
   }
-
   .card:hover {
-    transform: translateY(-8px) scale(1.04);
+    transform: translateY(-8px);
+    box-shadow: 0 0 25px var(--accent2);
   }
 
-  /* ART GALLERY */
+  /* GALLERY */
   .gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 18px;
     margin-top: 30px;
   }
-
   .gallery img {
     width: 100%;
-    border-radius: 20px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+    border-radius: 18px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.5);
   }
 
   /* QUOTE */
   .quote {
-    margin-top: 60px;
+    margin-top: 70px;
     padding: 30px;
     text-align: center;
-    font-size: 28px;
+    font-size: 30px;
     font-weight: 600;
-    color: #264653;
+    background: linear-gradient(90deg, var(--accent2), var(--accent1));
+    -webkit-background-clip: text;
+    color: transparent;
   }
 
-  /* FOOTER */
   footer {
-    padding: 25px;
-    margin-top: 40px;
     text-align: center;
-    color: #52606d;
-    background: #f1f6ff;
+    padding: 30px;
+    color: var(--muted);
+    margin-top: 40px;
   }
 </style>
 </head>
 
 <body>
-  <div class="blob" style="top: -120px; left: -80px"></div>
-  <div class="blob blob2" style="bottom: -120px; right: -80px"></div>
 
-  <!-- HERO -->
-  <section class="hero">
-    <h1>MindWave</h1>
-    <p>A creative space that blends emotions, pastel waves, floating shapes, and calming energy for mental health awareness.</p>
-  </section>
+<div class="blob" style="top:-120px; left:-80px"></div>
+<div class="blob blob2" style="bottom:-160px; right:-120px"></div>
+<div class="blob blob3" style="top:40%; left:60%"></div>
 
-  <div class="wave"></div>
+<section class="hero">
+  <h1>MindWave Dark</h1>
+  <p>A deep, dark, neon-aesthetic mental health awareness website with floating shapes, glowing cards, and calming visual flow.</p>
+</section>
 
-  <!-- ABOUT -->
-  <section class="glass">
-    <h2>What is MindWave?</h2>
-    <p>
-      MindWave is an artistic mental wellness concept inspired by soft motion, pastel colors, floating elements, and emotional flow. It aims to help people understand emotions in a gentle, creative, and visually soothing way.
-    </p>
+<!-- ABOUT SECTION -->
+<div class="section">
+  <h2>Understanding Your Emotions</h2>
+  <p>Your feelings are real. Your emotions matter. This space helps you understand mental health in a visually soothing, aesthetic, and expressive way.</p>
 
-    <div class="gallery">
-      <img src="https://images.pexels.com/photos/4101143/pexels-photo-4101143.jpeg" />
-      <img src="https://images.pexels.com/photos/897817/pexels-photo-897817.jpeg" />
-      <img src="https://images.pexels.com/photos/3759657/pexels-photo-3759657.jpeg" />
-    </div>
-  </section>
+  <div class="gallery">
+    <img src="https://images.pexels.com/photos/4101143/pexels-photo-4101143.jpeg" />
+    <img src="https://images.pexels.com/photos/897817/pexels-photo-897817.jpeg" />
+    <img src="https://images.pexels.com/photos/3759657/pexels-photo-3759657.jpeg" />
+  </div>
+</div>
 
-  <!-- FEATURES -->
-  <section class="glass">
-    <h2>Creative Well-Being Tools</h2>
-    <div class="cards">
-      <div class="card">🌿 Pastel Grounding Art</div>
-      <div class="card">✨ Mood Bubbles Tracker</div>
-      <div class="card">🌊 Wave Breathing Flow</div>
-      <div class="card">🎨 Expressive Color Therapy</div>
-    </div>
-  </section>
+<!-- FEATURES -->
+<div class="section">
+  <h2>Neon Mental Wellness Tools</h2>
+  <div class="cards">
+    <div class="card">🌙 Night Calm Breathing</div>
+    <div class="card">🌸 Emotional Reflection</div>
+    <div class="card">✨ Mood Glow Tracker</div>
+    <div class="card">🌊 Wave Therapy Visualizer</div>
+  </div>
+</div>
 
-  <div class="quote">“Your emotions are waves — let them flow, not drown you.”</div>
+<div class="quote">“In the darkness, your inner light matters the most.”</div>
 
-  <footer>© 2025 MindWave • Creative Mental Health Awareness • Designed Uniquely</footer>
+<footer>© 2025 MindWave Dark • Aesthetic Mental Health Awareness • Designed with care</footer>
+
 </body>
 </html>
