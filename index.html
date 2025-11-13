@@ -1,200 +1,226 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SereneMind — Mental Health Awareness</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>BloomMind — Aesthetic Pastel Mental Health</title>
+  <meta name="description" content="BloomMind — pastel, calm mental health awareness site with tools and resources." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
-    body {
-      margin: 0;
-      font-family: "Poppins", sans-serif;
-      background: #eef3ff;
-      color: #2a2a2a;
-      overflow-x: hidden;
+    :root{
+      --bg: #fffafc;
+      --card: #ffffff;
+      --muted: #7b7f86;
+      --accent1: #ffd6e0; /* pink */
+      --accent2: #d7f5ff; /* blue */
+      --accent3: #fff7d6; /* yellow */
+      --radius: 18px;
     }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial;color:#263238;background:linear-gradient(180deg,var(--bg),#f3fbff)}
 
-    /* SOFT FLOAT ANIMATION */
-    @keyframes float {
-      0% { transform: translateY(0px); }
-      50% { transform: translateY(-12px); }
-      100% { transform: translateY(0px); }
-    }
+    /* container */
+    .container{max-width:1100px;margin:0 auto;padding:28px}
 
-    /* HERO */
-    .hero {
-      height: 90vh;
-      background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
-        url("https://images.pexels.com/photos/4101143/pexels-photo-4101143.jpeg") center/cover no-repeat;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      color: white;
-      position: relative;
-      animation: fadeIn 1.6s ease-in-out;
-    }
+    /* header / nav */
+    header{display:flex;justify-content:space-between;align-items:center;padding:8px 0}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,#ffd6e0,#d7f5ff);display:flex;align-items:center;justify-content:center;font-weight:700;color:#6b2b68}
+    nav a{margin-left:18px;color:var(--muted);text-decoration:none;font-weight:600}
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
+    /* hero */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:30px;align-items:center;padding:36px 0}
+    .hero-left h1{font-size:clamp(28px,4.6vw,46px);margin:0;color:#233044}
+    .hero-left p{color:var(--muted);margin-top:12px;font-size:16px}
+    .hero-cta{margin-top:20px;display:flex;gap:12px}
+    .btn{padding:10px 16px;border-radius:12px;border:0;cursor:pointer;font-weight:700}
+    .btn-primary{background:linear-gradient(90deg,#ffb3c7,#9fe9ff);color:#1b1b1b;box-shadow:0 8px 28px rgba(99,102,241,0.08)}
+    .btn-ghost{background:transparent;border:2px solid rgba(0,0,0,0.06)}
 
-    .hero h1 {
-      font-size: 70px;
-      font-weight: 700;
-      margin: 0;
-      text-shadow: 0 4px 20px rgba(0,0,0,0.4);
-      animation: float 6s ease-in-out infinite;
-    }
+    /* hero card */
+    .card{background:var(--card);border-radius:var(--radius);padding:18px;box-shadow:0 10px 30px rgba(16,24,40,0.06)}
+    .hero-right .stat{display:flex;gap:14px;align-items:center}
+    .stat .dot{width:12px;height:12px;border-radius:50%}
 
-    .hero p {
-      margin-top: 20px;
-      font-size: 22px;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
-      opacity: 0.95;
-    }
+    /* mood tracker */
+    .mood-row{display:flex;gap:8px;align-items:center;margin-top:12px}
+    input[type=range]{width:100%}
 
-    /* GLASS CARD SECTIONS */
-    .section {
-      max-width: 1150px;
-      margin: auto;
-      padding: 70px 25px;
-      text-align: center;
-    }
+    /* breathing widget */
+    .breath-circle{width:180px;height:180px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:12px auto;background:radial-gradient(circle at 40% 30%, rgba(255,182,193,0.4), transparent 40%), radial-gradient(circle at 70% 70%, rgba(173,235,255,0.35), transparent 38%);transition:transform .4s}
+    .breath-phase{font-weight:700;color:#2b2f36}
 
-    .section h2 {
-      font-size: 38px;
-      color: #3e57ea;
-      margin-bottom: 12px;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
+    /* features grid */
+    .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:30px}
+    .feature{padding:18px;border-radius:14px;background:linear-gradient(180deg,rgba(255,255,255,0.8),rgba(255,255,255,0.95));box-shadow:0 6px 18px rgba(34,50,84,0.04)}
 
-    .glass-box {
-      background: rgba(255, 255, 255, 0.55);
-      padding: 25px;
-      border-radius: 18px;
-      backdrop-filter: blur(12px);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.12);
-      line-height: 1.7;
-      max-width: 850px;
-      margin: 20px auto 40px auto;
-      color: #444;
-      font-size: 18px;
-    }
+    /* gallery */
+    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-top:18px}
+    .gallery img{width:100%;border-radius:12px;display:block;object-fit:cover;aspect-ratio:16/12;box-shadow:0 8px 30px rgba(16,24,40,0.06)}
 
-    /* IMAGES */
-    .img-row {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 25px;
-      margin-top: 40px;
-    }
+    /* quote */
+    .quote{margin:42px 0;padding:28px;border-radius:20px;background:linear-gradient(90deg,#fff7d6,#ffd6e0);text-align:center;font-weight:600;color:#2b2f36}
 
-    .img-row img {
-      width: 100%;
-      border-radius: 22px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-      transition: 0.3s;
-    }
+    /* footer */
+    footer{margin-top:36px;padding:24px;text-align:center;color:var(--muted);font-size:15px}
 
-    .img-row img:hover {
-      transform: scale(1.04);
-    }
-
-    /* FEATURE CARDS */
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 25px;
-      margin-top: 45px;
-    }
-
-    .card {
-      background: white;
-      padding: 22px;
-      border-radius: 18px;
-      box-shadow: 0 5px 18px rgba(0,0,0,0.1);
-      transition: 0.25s;
-      font-size: 18px;
-    }
-
-    .card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-    }
-
-    /* QUOTE */
-    .quote {
-      background: linear-gradient(135deg, #6366f1, #0ea5e9);
-      padding: 100px 25px;
-      text-align: center;
-      color: white;
-      font-size: 30px;
-      margin-top: 50px;
-      border-radius: 40px 40px 0 0;
-      text-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    }
-
-    /* FOOTER */
-    footer {
-      background: #dfe3ff;
-      padding: 25px;
-      text-align: center;
-      font-size: 17px;
-      color: #444;
-      margin-top: 0;
-    }
+    /* responsive */
+    @media (max-width:980px){.hero{grid-template-columns:1fr}.hero-right{order:2}.hero-left{order:1}}
+    @media (max-width:520px){header{padding:10px 0}.logo{width:42px;height:42px}
+      .hero h1{font-size:28px}}
   </style>
 </head>
-
 <body>
-  <!-- HERO -->
-  <div class="hero">
-    <div>
-      <h1>SereneMind</h1>
-      <p>Inspiring awareness, supporting healing, and promoting emotional balance worldwide.</p>
-    </div>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">B</div>
+        <div>
+          <div style="font-weight:700">BloomMind</div>
+          <div style="font-size:12px;color:var(--muted)">Mental Health Awarenes</div>
+        </div>
+      </div>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#tools">Tools</a>
+        <a href="#resources">Resources</a>
+      </nav>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section class="hero">
+        <div class="hero-left">
+          <h1>Bloom into Calm — Your mental wellness hub</h1>
+          <p>Gentle tools, short practices, and caring resources to support your emotional well‑being. Designed with pastel calmness to soothe and guide.</p>
+          <div class="hero-cta">
+            <button class="btn btn-primary" id="start-breath">Try Breathing</button>
+            <button class="btn btn-ghost" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">Learn More</button>
+          </div>
+        </div>
+
+        <div class="hero-right">
+          <div class="card hero-right">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div>
+                <div style="font-size:13px;color:var(--muted)">Today's mood</div>
+                <div style="font-weight:700;font-size:18px">Track & reflect</div>
+              </div>
+              <div style="text-align:right">
+                <div style="font-size:12px;color:var(--muted)">Entries</div>
+                <div style="font-weight:700;font-size:20px">12</div>
+              </div>
+            </div>
+
+            <div style="margin-top:12px">
+              <label style="font-size:13px;color:var(--muted)">Mood: <span id="moodVal">6</span>/10</label>
+              <div class="mood-row">
+                <input id="moodRange" type="range" min="1" max="10" value="6" />
+                <button class="btn" id="saveMood" style="background:#ffe9f1;border-radius:10px">Save</button>
+              </div>
+            </div>
+
+            <hr style="margin:14px 0;border:none;border-top:1px solid rgba(16,24,40,0.06)">
+
+            <div style="text-align:center">
+              <div class="breath-circle" id="breathCircle"><div style="text-align:center"><div class="breath-phase" id="phase">Ready</div><div style="font-size:12px;color:var(--muted);margin-top:6px">4-4-4 breathing</div></div></div>
+              <div style="display:flex;gap:8px;justify-content:center;margin-top:8px">
+                <button class="btn" id="breathStart" style="background:#dff8ff;border-radius:10px">Start</button>
+                <button class="btn" id="breathStop" style="background:#fff0d9;border-radius:10px">Stop</button>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top:14px;display:flex;gap:12px">
+            <div class="card" style="flex:1">
+              <div style="font-size:13px;color:var(--muted)">Quick tip</div>
+              <div style="font-weight:700;margin-top:6px">Take a 5-minute walk</div>
+              <div style="font-size:13px;color:var(--muted);margin-top:8px">Moving your body helps reset your mood and reduce stress.</div>
+            </div>
+
+            <div class="card" style="width:140px;display:flex;align-items:center;justify-content:center;font-weight:700;color:#6b2b68;background:linear-gradient(135deg,#ffd6e0,#d7f5ff);">
+              Need Help?
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+      <section id="about" class="card section" style="margin-top:22px">
+        <h2 style="margin-top:0">About BloomMind</h2>
+        <p style="margin:12px auto 0;max-width:820px;color:var(--muted)">BloomMind is a calm, pastel-themed space focused on mental health awareness. We provide short practical tools — breathing, mood tracking, grounding — and trustworthy resources for finding support.</p>
+
+        <div class="img-row" style="margin-top:18px">
+          <img src="https://images.pexels.com/photos/3685539/pexels-photo-3685539.jpeg" alt="calm" />
+          <img src="https://images.pexels.com/photos/4050286/pexels-photo-4050286.jpeg" alt="mindful" />
+          <img src="https://images.pexels.com/photos/4148862/pexels-photo-4148862.jpeg" alt="support" />
+        </div>
+      </section>
+
+      <!-- TOOLS -->
+      <section id="tools" class="section">
+        <h2>Tools & Practices</h2>
+        <div class="features">
+          <div class="feature">🌿 Grounding 5-4-3-2-1</div>
+          <div class="feature">🧘 Short Mindfulness (2–5 minutes)</div>
+          <div class="feature">📓 Journaling prompts</div>
+          <div class="feature">🫶 Reach-out tips</div>
+        </div>
+
+        <div style="margin-top:18px" class="gallery">
+          <img src="https://images.pexels.com/photos/4050286/pexels-photo-4050286.jpeg" />
+          <img src="https://images.pexels.com/photos/3685539/pexels-photo-3685539.jpeg" />
+          <img src="https://images.pexels.com/photos/4148862/pexels-photo-4148862.jpeg" />
+          <img src="https://images.pexels.com/photos/3759657/pexels-photo-3759657.jpeg" />
+        </div>
+      </section>
+
+      <!-- RESOURCES -->
+      <section id="resources" class="section card">
+        <h2 style="margin-top:0">Resources & Helplines</h2>
+        <p style="color:var(--muted);max-width:820px;margin:10px auto">If you are in immediate danger or at risk, contact emergency services in your country. For non-emergency support, here are some helpful resources:</p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:12px">
+          <div class="card" style="min-width:220px">Find a therapist</div>
+          <div class="card" style="min-width:220px">Crisis helpline (add local)</div>
+          <div class="card" style="min-width:220px">Self-help guides</div>
+        </div>
+      </section>
+
+      <div class="quote">"Small consistent steps are the doorway to lasting change."</div>
+
+    </main>
+
+    <footer>
+      © 2025 BloomMind • Calm design for mental health awareness • Made with care
+    </footer>
   </div>
 
-  <!-- ABOUT -->
-  <div class="section">
-    <h2>Your Mental Health Is Your Strength</h2>
-    <div class="glass-box">
-      Mental health influences how we think, feel, and act. It shapes how we handle stress,
-      relate to others, and make decisions. Understanding your emotions and taking time to heal
-      is the greatest form of self-care.
-    </div>
+  <script>
+    // Mood tracker interactions (save to localStorage)
+    const moodRange = document.getElementById('moodRange');
+    const moodVal = document.getElementById('moodVal');
+    const saveMood = document.getElementById('saveMood');
+    moodRange.addEventListener('input', ()=>{moodVal.textContent = moodRange.value});
+    saveMood.addEventListener('click', ()=>{
+      const entry = {value: moodRange.value, time: new Date().toISOString()};
+      const arr = JSON.parse(localStorage.getItem('bloom_moods') || '[]');
+      arr.unshift(entry);
+      localStorage.setItem('bloom_moods', JSON.stringify(arr.slice(0,30)));
+      alert('Mood saved locally ✅')
+    });
 
-    <div class="img-row">
-      <img src="https://images.pexels.com/photos/897817/pexels-photo-897817.jpeg" />
-      <img src="https://images.pexels.com/photos/3759657/pexels-photo-3759657.jpeg" />
-      <img src="https://images.pexels.com/photos/205097/pexels-photo-205097.jpeg" />
-    </div>
-  </div>
+    // Breathing 4-4-4 simple cycle
+    let breathInterval=null;let phaseEl=document.getElementById('phase');let circle=document.getElementById('breathCircle');
+    document.getElementById('breathStart').addEventListener('click',startBreath);
+    document.getElementById('breathStop').addEventListener('click',stopBreath);
+    document.getElementById('start-breath').addEventListener('click', ()=>{document.getElementById('breathStart').click();document.getElementById('breathCircle').scrollIntoView({behavior:'smooth'})});
 
-  <!-- FEATURES -->
-  <div class="section">
-    <h2>Build a Healthier Mind</h2>
-    <div class="cards">
-      <div class="card"><h3>✨ Self-Care Rituals</h3><p>Small routines that nourish your emotional energy.</p></div>
-      <div class="card"><h3>🧘 Guided Mindfulness</h3><p>Practice staying present, calm, and grounded.</p></div>
-      <div class="card"><h3>🤝 Emotional Support</h3><p>You are not alone — reach out and stay connected.</p></div>
-      <div class="card"><h3>📚 Learn & Grow</h3><p>Understanding emotions is the start of healing.</p></div>
-      <div class="card"><h3>🌿 Stress Relief Tools</h3><p>Breathing, journaling, grounding techniques & more.</p></div>
-    </div>
-  </div>
-
-  <!-- QUOTE -->
-  <div class="quote">
-    "Healing doesn’t mean the damage never existed — it means it no longer controls your life."
-  </div>
-
-  <!-- FOOTER -->
-  <footer>
-    © 2025 SereneMind • Designed for global mental health awareness 🌿
-  </footer>
+    function startBreath(){if(breathInterval) return;let step=0;let count=4;phaseEl.textContent='Inhale';circle.style.transform='scale(1)';breathInterval=setInterval(()=>{
+      count--;
+      if(count>0){phaseEl.textContent=(step%3===0)?'Inhale':(step%3===1)?'Hold':'Exhale';}
+      else{step++;count=4;phaseEl.textContent=(step%3===0)?'Inhale':(step%3===1)?'Hold':'Exhale';circle.style.transform=(step%3===0)?'scale(1.12)':(step%3===1)?'scale(1.0)':'scale(0.8)';}
+    },1000)}
+    function stopBreath(){clearInterval(breathInterval);breathInterval=null;phaseEl.textContent='Ready';circle.style.transform='scale(1)'}
+  </script>
 </body>
 </html>
