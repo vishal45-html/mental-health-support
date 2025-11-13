@@ -1,442 +1,333 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Mental Health Awareness — Dark Neon Glow</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mental Health Awareness</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #f7fff7;
+      --soft-green: #dff6e9;
+      --brand: #66b18b;
+      --muted: #6b6b6b;
+      --card-shadow: 0 8px 24px rgba(16,24,40,0.06);
+      --radius: 14px;
+      font-family: 'Poppins', system-ui;
+      scroll-behavior: smooth;
+    }
 
-<style>
-:root{
-  --bg:#05060b;
-  --panel:#0b0f18;
-  --neon-1:#00f7a7;
-  --neon-2:#00d4ff;
-  --muted:#9fb3bc;
-  --glass: rgba(255,255,255,0.03);
-  --radius:14px;
-  --maxw:1200px;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  margin:0;
-  font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;
-  background:
-    radial-gradient(1000px 400px at 10% 10%, rgba(0,212,255,0.03), transparent),
-    linear-gradient(180deg,#03050a,#06101a 60%);
-  color:#e6fff7;
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:#0f1724}
 
-/* container */
-.container{max-width:var(--maxw);margin:0 auto;padding:20px}
+    /* NAVBAR */
+    .topbar{
+      position:fixed;top:0;left:0;right:0;
+      background:rgba(255,255,255,0.92);
+      backdrop-filter:blur(6px);
+      box-shadow:0 6px 18px rgba(0,0,0,0.06);
+      z-index:999;
+    }
+    .container{max-width:1100px;margin:auto;padding:0 20px}
+    nav{display:flex;justify-content:space-between;align-items:center;padding:12px 0}
 
-/* NAV */
-.navbar{
-  position:sticky;top:0;z-index:1000;background:linear-gradient(180deg, rgba(2,6,10,0.6), rgba(2,8,14,0.35));
-  border-bottom:1px solid rgba(0,247,167,0.06);backdrop-filter:blur(6px)
-}
-.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 20px}
-.brand{display:flex;gap:12px;align-items:center}
-.logo{
-  width:48px;height:48px;border-radius:10px;display:flex;align-items:center;justify-content:center;
-  background:linear-gradient(135deg,var(--neon-1),var(--neon-2));color:#031014;font-weight:800;box-shadow:0 8px 36px rgba(0,247,167,0.08)
-}
-.nav-links{display:flex;gap:12px;align-items:center}
-.nav-links a{color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:10px;font-weight:600;transition:all .15s}
-.nav-links a:hover{color:var(--neon-2);text-shadow:0 0 8px rgba(0,212,255,0.12);transform:translateY(-3px)}
-.cta-btn{background:linear-gradient(90deg,var(--neon-1),var(--neon-2));color:#031014;padding:10px 14px;border-radius:12px;font-weight:700;box-shadow:0 10px 30px rgba(0,247,167,0.08);text-decoration:none}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{
+      width:44px;height:44px;border-radius:12px;
+      background:linear-gradient(135deg,var(--brand),#8cd7b5);
+      display:flex;align-items:center;justify-content:center;
+      color:white;font-weight:700;
+    }
 
-/* hero */
-.hero{
-  display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;padding:80px 0 40px
-}
-@media (max-width:980px){.hero{grid-template-columns:1fr;padding-top:100px}.nav-links{display:none}.mobile-toggle{display:block}}
-.hero h1{font-size:clamp(30px,5vw,56px);margin:0;color:var(--neon-1);text-shadow:0 0 20px rgba(0,247,167,0.12)}
-.lead{color:var(--muted);font-size:1.05rem;line-height:1.6;margin-top:10px}
-.actions{margin-top:18px;display:flex;gap:12px;flex-wrap:wrap}
+    .nav-links{display:flex;gap:14px}
+    .nav-links a{
+      color:var(--muted);text-decoration:none;
+      padding:8px 12px;border-radius:10px;font-weight:600;
+    }
+    .nav-links a:hover, .nav-links a.active{
+      background:var(--soft-green);color:var(--brand)
+    }
+    .hamburger{display:none}
 
-/* hero card */
-.hero-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:16px;overflow:hidden;border:1px solid rgba(0,247,167,0.05);box-shadow:0 12px 50px rgba(0,247,167,0.04)}
-.hero-card img{width:100%;height:320px;object-fit:cover;display:block;filter:contrast(.98) brightness(.92)}
-.hero-card .body{padding:16px;color:var(--muted)}
+    /* HERO */
+    .hero{
+      display:flex;gap:36px;align-items:center;
+      padding:120px 0 60px;
+    }
+    .hero-left{flex:1}
+    .chip{
+      display:inline-block;padding:6px 10px;border-radius:999px;
+      background:#f1fff4;color:var(--brand);font-weight:600;
+    }
+    .hero h1{font-size:clamp(30px,4vw,45px);margin:12px 0}
+    .lead{color:var(--muted)}
+    .actions{margin-top:14px;display:flex;gap:10px}
+    .cta{
+      background:var(--brand);color:white;padding:12px 18px;
+      text-decoration:none;border-radius:12px;font-weight:600;
+    }
 
-/* sections */
-.section{padding:48px 0}
-.section .wrap{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}
-@media (max-width:900px){.section .wrap{grid-template-columns:1fr}}
-.section h2{color:var(--neon-2);text-shadow:0 0 12px rgba(0,212,255,0.06);margin:0 0 10px}
-.panel{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.02);box-shadow:0 8px 30px rgba(0,0,0,0.6)}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:18px}
+    .hero-card{
+      flex:1;max-width:460px;background:white;border-radius:20px;
+      overflow:hidden;box-shadow:var(--card-shadow);
+    }
+    .hero-card img{
+      width:100%;height:280px;object-fit:cover;
+    }
 
-/* image card */
-.img-card{position:relative;border-radius:12px;overflow:hidden;border:1px solid rgba(0,247,167,0.04);background:#070b12}
-.img-card img{width:100%;height:180px;object-fit:cover;display:block;transition:transform .5s,filter .4s}
-.img-card:hover img{transform:scale(1.04);filter:brightness(1.05)}
-.img-card .caption{padding:12px;color:var(--muted);font-size:.98rem}
+    /* GRID + CARD */
+    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+    .card{
+      background:white;padding:18px;border-radius:var(--radius);
+      box-shadow:var(--card-shadow)
+    }
+    .rounded-img img{
+      border-radius:12px;width:100%;height:180px;object-fit:cover;
+      box-shadow:var(--card-shadow)
+    }
 
-/* cards */
-.info-card{padding:14px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.02)}
+    /* TABLE */
+    table{width:100%;border-collapse:collapse;margin-top:10px}
+    table th{background:var(--soft-green);padding:10px;color:var(--brand)}
+    table td{padding:10px;background:white}
 
-/* table myths */
-.myths{width:100%;border-collapse:collapse;margin-top:12px}
-.myths th,.myths td{padding:12px 10px;text-align:left;border-bottom:1px dashed rgba(255,255,255,0.03)}
-.myths thead th{background:linear-gradient(90deg,var(--neon-1),var(--neon-2));color:#001214;border-radius:6px}
-
-/* helpline */
-.helpline{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:16px}
-.hel{padding:12px;border-radius:10px;background:linear-gradient(90deg, rgba(0,247,167,0.04), rgba(0,212,255,0.03));border:1px solid rgba(0,247,167,0.06);color:var(--muted)}
-
-/* footer */
-footer{padding:28px 0;text-align:center;color:var(--muted);margin-top:30px;border-top:1px solid rgba(0,247,167,0.04)}
-
-/* small utilities */
-.kv{font-weight:700;color:var(--neon-1)}
-.center{text-align:center}
-.pill{display:inline-block;padding:6px 12px;background:linear-gradient(90deg,var(--neon-1),var(--neon-2));color:#031018;border-radius:999px;font-weight:700}
-
-/* mobile toggle */
-.mobile-toggle{display:none;background:transparent;border:0;color:var(--neon-1);font-size:22px;cursor:pointer}
-
-/* simple animations */
-.fade{animation:fadeIn .6s both}
-@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-</style>
+    /* MOBILE */
+    @media (max-width:880px){
+      .grid{grid-template-columns:1fr}
+      .hero{flex-direction:column;padding-top:110px}
+      .nav-links{display:none}
+      .hamburger{
+        display:block;border:0;background:none;font-size:24px;
+      }
+      .mobile-menu{
+        display:none;position:absolute;left:20px;right:20px;top:70px;
+        background:white;padding:12px;border-radius:12px;
+        box-shadow:var(--card-shadow)
+      }
+      .mobile-menu a{
+        display:block;padding:10px;color:var(--muted);
+        text-decoration:none;
+      }
+    }
+  </style>
 </head>
+
 <body>
-
-<header class="navbar">
-  <div class="container nav-inner">
-    <div class="brand">
-      <div class="logo">MH</div>
-      <div>
-        <div style="font-weight:800">Mental Health</div>
-        <div style="font-size:.85rem;color:var(--muted)">Awareness • Dark Neon</div>
-      </div>
-    </div>
-
+<header class="topbar">
+  <div class="container">
     <nav>
-      <button class="mobile-toggle" id="mobileBtn">☰</button>
+      <div class="brand">
+        <div class="logo">MH</div>
+        <div>
+          <div style="font-weight:700">Mental Health</div>
+          <div style="font-size:12px;color:var(--muted)">Awareness</div>
+        </div>
+      </div>
+
       <div class="nav-links" id="navLinks">
-        <a href="#intro">Home</a>
-        <a href="#why">Why</a>
-        <a href="#issues">Issues</a>
-        <a href="#warning">Warning</a>
-        <a href="#care">Self Care</a>
-        <a href="#helpfriend">Help a Friend</a>
+        <a href="#intro">Introduction</a>
+        <a href="#why">Why It Matters</a>
+        <a href="#issues">Common Issues</a>
+        <a href="#warning">Warning Signs</a>
+        <a href="#care">Take Care</a>
+        <a href="#friend">Help a Friend</a>
         <a href="#myths">Myths</a>
+        <a href="#spread">Spread</a>
         <a href="#helpline">Helplines</a>
       </div>
+
+      <button class="hamburger" id="hamburger">☰</button>
     </nav>
 
-    <a class="cta-btn" href="#helpline">Get Help</a>
+    <div id="mobileMenu" class="mobile-menu">
+      <a href="#intro">Introduction</a>
+      <a href="#why">Why It Matters</a>
+      <a href="#issues">Common Issues</a>
+      <a href="#warning">Warning Signs</a>
+      <a href="#care">Take Care</a>
+      <a href="#friend">Help a Friend</a>
+      <a href="#myths">Myths</a>
+      <a href="#spread">Spread</a>
+      <a href="#helpline">Helplines</a>
+    </div>
   </div>
 </header>
 
-<main class="container">
+<main style="padding-top:90px">
+  <div class="container">
 
-  <!-- HERO -->
-  <section id="intro" class="hero fade">
-    <div>
-      <h1>Mental Health Awareness</h1>
-      <p class="lead">Mental health matters — for students, families, and communities. Learn how to recognize issues, support friends, and cultivate self-care.</p>
-      <div class="actions">
-        <a class="cta-btn" href="#why">Why it matters</a>
-        <a style="background:transparent;border:1px solid rgba(255,255,255,0.04);padding:10px 14px;border-radius:12px;color:var(--neon-1);text-decoration:none" href="#interactive">Tools</a>
-      </div>
-    </div>
+    <!-- HERO -->
+    <section class="hero" id="intro">
+      <div class="hero-left">
+        <div class="chip">Mental Health Awareness</div>
+        <h1>Your Mental Health Matters</h1>
+        <p class="lead">Good mental health improves how we think, feel, act, and connect with others.</p>
 
-    <aside class="hero-card">
-      <img src="https://images.unsplash.com/photo-1533227268428-f9ed0900fb3b?auto=format&fit=crop&w=1400&q=80" alt="mental health">
-      <div class="body">
-        <div style="font-weight:700">Quick tools</div>
-        <div style="color:var(--muted);font-size:.95rem;margin-top:6px">Mood tracker, micro-journal, quick tips — private in your browser.</div>
-      </div>
-    </aside>
-  </section>
-
-  <!-- WHY -->
-  <section id="why" class="section fade">
-    <h2>Why Mental Health Matters</h2>
-    <div class="wrap">
-      <div>
-        <p class="panel">Mental health affects how we think, feel, and act. Prioritizing it improves well-being, resilience, learning, relationships, and physical health — and helps break stigma.</p>
-
-        <div class="grid" style="margin-top:16px">
-          <div class="info-card"><strong>Improves Well-being</strong><div style="color:var(--muted)">Balance in mind and body.</div></div>
-          <div class="info-card"><strong>Builds Resilience</strong><div style="color:var(--muted)">Coping skills for stress.</div></div>
-          <div class="info-card"><strong>Boosts Productivity</strong><div style="color:var(--muted)">Focus and performance.</div></div>
-          <div class="info-card"><strong>Strengthens Relationships</strong><div style="color:var(--muted)">Empathy & communication.</div></div>
+        <div class="actions">
+          <a class="cta" href="#why">Learn more</a>
+          <a class="cta" href="#helpline" style="background:white;color:var(--brand);border:2px solid var(--brand)">Get Help</a>
         </div>
       </div>
 
-      <div>
-        <div class="img-card">
-          <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1200&q=80" alt="why mental health matters">
-          <div class="caption">Well-being & connection</div>
+      <div class="hero-card">
+        <img src="https://cdn.pixabay.com/photo/2017/08/01/10/42/people-2569205_1280.jpg">
+        <div style="padding:18px;color:var(--muted)">
+          Tools, tips & emotional support in one place.
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ISSUES -->
-  <section id="issues" class="section fade">
-    <h2>Common Issues Among Students</h2>
-    <div class="wrap">
-      <div>
-        <p class="panel">Students commonly face stress, anxiety, depression, burnout, overthinking, loneliness, sleep problems, and low confidence. Early awareness helps intervene.</p>
-
-        <div class="grid">
-          <div class="img-card">
-            <img src="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?auto=format&fit=crop&w=1200&q=80" alt="stress student">
-            <div class="caption">Stress & pressure</div>
-          </div>
-          <div class="img-card">
-            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80" alt="anxiety">
-            <div class="caption">Anxiety & worry</div>
-          </div>
-          <div class="img-card">
-            <img src="https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?auto=format&fit=crop&w=1200&q=80" alt="depression">
-            <div class="caption">Depression & low mood</div>
-          </div>
-          <div class="img-card">
-            <img src="https://images.unsplash.com/photo-1520975698519-59c09a8d3c01?auto=format&fit=crop&w=1200&q=80" alt="loneliness">
-            <div class="caption">Loneliness & isolation</div>
-          </div>
-        </div>
-      </div>
-      <div>
-        <div class="panel">
-          <h3 style="margin:0 0 8px">Short list</h3>
-          <ul style="color:var(--muted);line-height:1.8">
-            <li>Stress (exams, deadlines)</li>
-            <li>Anxiety (worry & panic)</li>
-            <li>Depression (persistent low mood)</li>
-            <li>Burnout & overwork</li>
-            <li>Sleep problems & fatigue</li>
-            <li>Low self-esteem & comparison</li>
+    <!-- WHY IT MATTERS -->
+    <section id="why">
+      <h2>Why Mental Health Matters</h2>
+      <div class="grid">
+        <div class="card">
+          <ul style="color:var(--muted)">
+            <li>Improves well-being</li>
+            <li>Builds resilience</li>
+            <li>Boosts productivity</li>
+            <li>Strengthens relationships</li>
+            <li>Supports personal growth</li>
           </ul>
         </div>
+        <div class="rounded-img">
+          <img src="https://cdn.pixabay.com/photo/2016/11/29/05/08/adult-1867703_1280.jpg">
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- WARNING SIGNS -->
-  <section id="warning" class="section fade">
-    <h2>Warning Signs</h2>
-    <div class="wrap">
-      <div>
-        <div class="panel">
-          <ul style="color:var(--muted);line-height:1.9">
-            <li>Persistent sadness & mood swings</li>
-            <li>Withdrawal from friends and activities</li>
-            <li>Loss of interest in hobbies or studies</li>
-            <li>Sleep disturbances (too much or too little)</li>
-            <li>Chronic fatigue & low energy</li>
-            <li>Hopelessness & difficulty concentrating</li>
+    <!-- ISSUES -->
+    <section id="issues">
+      <h2>Common Issues</h2>
+      <div class="grid">
+        <div class="card">
+          <ul style="color:var(--muted)">
+            <li>Stress</li>
+            <li>Anxiety</li>
+            <li>Depression</li>
+            <li>Burnout</li>
+            <li>Loneliness</li>
+            <li>Sleep problems</li>
           </ul>
         </div>
-      </div>
-      <div>
-        <div class="img-card">
-          <img src="https://images.unsplash.com/photo-1493836512294-502baa1986e2?auto=format&fit=crop&w=1200&q=80" alt="warning signs">
-          <div class="caption">Recognize the signs early</div>
+        <div class="rounded-img">
+          <img src="https://cdn.pixabay.com/photo/2017/09/25/13/12/woman-2786274_1280.jpg">
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- SELF CARE -->
-  <section id="care" class="section fade">
-    <h2>How to Take Care of Your Mental Health</h2>
-    <div class="wrap">
-      <div>
-        <div class="panel">
-          <ul style="color:var(--muted);line-height:1.9">
-            <li><strong>Sleep:</strong> 7–9 hours when possible</li>
-            <li><strong>Nutrition:</strong> Balanced meals & hydration</li>
-            <li><strong>Exercise:</strong> Move daily to boost mood</li>
-            <li><strong>Mindfulness:</strong> Breathing, meditation, journaling</li>
-            <li><strong>Boundaries:</strong> Limit screen time & say no</li>
-            <li><strong>Support:</strong> Talk to friends, family, counsellors</li>
+    <!-- WARNING -->
+    <section id="warning">
+      <h2>Warning Signs</h2>
+      <div class="grid">
+        <div class="card">
+          <ul style="color:var(--muted)">
+            <li>Feeling sad or empty</li>
+            <li>Isolation</li>
+            <li>Loss of interest</li>
+            <li>Low energy</li>
+            <li>Changes in sleep</li>
+            <li>Difficulty focusing</li>
           </ul>
         </div>
-      </div>
-      <div>
-        <div class="img-card">
-          <img src="https://images.unsplash.com/photo-1526403224743-4f9a2f4a1ce1?auto=format&fit=crop&w=1200&q=80" alt="self care">
-          <div class="caption">Self-care matters</div>
+        <div class="rounded-img">
+          <img src="https://cdn.pixabay.com/photo/2016/11/23/14/45/girl-1851043_1280.jpg">
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- HELP A FRIEND -->
-  <section id="helpfriend" class="section fade">
-    <h2>How to Help a Friend</h2>
-    <div class="wrap">
-      <div>
-        <div class="panel">
-          <ul style="color:var(--muted);line-height:1.9">
-            <li>Listen without judgment</li>
-            <li>Validate their feelings & be patient</li>
-            <li>Offer practical help and check-in</li>
-            <li>Encourage professional help when needed</li>
-            <li>If immediate risk, contact emergency services</li>
+    <!-- CARE -->
+    <section id="care">
+      <h2>Self Care</h2>
+      <div class="grid">
+        <div class="card">
+          <ul style="color:var(--muted)">
+            <li>Sleep well</li>
+            <li>Eat healthy</li>
+            <li>Move daily</li>
+            <li>Practice mindfulness</li>
+            <li>Talk to someone</li>
           </ul>
         </div>
-      </div>
-      <div>
-        <div class="img-card">
-          <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=1200&q=80" alt="help friend">
-          <div class="caption">Supportive presence</div>
+        <div class="rounded-img">
+          <img src="https://cdn.pixabay.com/photo/2017/08/06/20/14/spa-2593481_1280.jpg">
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- MYTHS VS FACTS -->
-  <section id="myths" class="section fade">
-    <h2>Myths vs Facts</h2>
-    <div class="panel">
-      <table class="myths" role="table" aria-label="Myths versus facts">
-        <thead>
+    <!-- FRIEND -->
+    <section id="friend">
+      <h2>Helping a Friend</h2>
+      <div class="grid">
+        <div class="card">
+          <ul style="color:var(--muted)">
+            <li>Listen carefully</li>
+            <li>Support without judging</li>
+            <li>Encourage professional help</li>
+            <li>Check in regularly</li>
+          </ul>
+        </div>
+        <div class="rounded-img">
+          <img src="https://cdn.pixabay.com/photo/2017/08/06/09/53/people-2590991_1280.jpg">
+        </div>
+      </div>
+    </section>
+
+    <!-- MYTHS -->
+    <section id="myths">
+      <h2>Myths vs Facts</h2>
+      <div class="card">
+        <table>
           <tr><th>Myth</th><th>Fact</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Mental health problems are a sign of weakness</td><td>People from all backgrounds can be affected; seeking help is strength.</td></tr>
-          <tr><td>Only adults face mental health issues</td><td>Students and young people also experience mental health challenges.</td></tr>
-          <tr><td>Talking about it makes it worse</td><td>Talking often relieves burden and helps recovery.</td></tr>
-          <tr><td>Therapy is only for severe cases</td><td>Therapy helps with a wide range of problems and is proactive.</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
+          <tr><td>Mental illness is weakness</td><td>No — anyone can face it</td></tr>
+          <tr><td>Talking makes it worse</td><td>Talking helps recovery</td></tr>
+          <tr><td>Students don't get mental issues</td><td>They do — very commonly</td></tr>
+        </table>
+      </div>
+    </section>
 
-  <!-- INTERACTIVE -->
-  <section id="interactive" class="section fade">
-    <h2>Quick Tools — Private & Local</h2>
-    <div class="wrap">
-      <div>
-        <div class="panel">
-          <h3 style="margin:0 0 10px">Mood quick-track</h3>
-          <div style="display:flex;gap:8px;flex-wrap:wrap">
-            <button class="pill" data-val="1">😔 Low</button>
-            <button class="pill" data-val="2">😐 Okay</button>
-            <button class="pill" data-val="3">🙂 Good</button>
-            <button class="pill" data-val="4">😄 Great</button>
-          </div>
-          <div style="margin-top:12px;color:var(--muted)" id="moodStatus">No mood recorded yet.</div>
+    <!-- SPREAD -->
+    <section id="spread">
+      <h2>Spread Awareness</h2>
+      <div class="grid">
+        <div class="card">
+          <ul>
+            <li>Talk openly</li>
+            <li>Educate friends</li>
+            <li>Share resources</li>
+            <li>Support others</li>
+          </ul>
         </div>
-
-        <div style="margin-top:12px" class="panel">
-          <h3 style="margin:0 0 8px">Micro-Journal (private)</h3>
-          <textarea id="micro" rows="5" style="width:100%;padding:10px;border-radius:8px;background:transparent;border:1px solid rgba(255,255,255,0.03);color:inherit"></textarea>
-          <div style="margin-top:8px;display:flex;gap:8px">
-            <button class="cta-btn" id="saveJournal">Save</button>
-            <button style="background:transparent;border:1px solid rgba(255,255,255,0.04);padding:10px;border-radius:10px;color:var(--neon-1)" id="clearJournal">Clear</button>
-          </div>
-          <div style="margin-top:8px;color:var(--muted)">Last saved: <span id="journalTime">—</span></div>
+        <div class="rounded-img">
+          <img src="https://cdn.pixabay.com/photo/2019/05/29/01/42/group-4237344_1280.jpg">
         </div>
       </div>
+    </section>
 
-      <div>
-        <div class="img-card">
-          <img src="https://images.unsplash.com/photo-1527236438218-d82077ae1f85?auto=format&fit=crop&w=1200&q=80" alt="tools">
-          <div class="caption">Tools are stored in your browser only.</div>
-        </div>
+    <!-- HELPLINES -->
+    <section id="helpline">
+      <h2>Helplines (India)</h2>
+      <div class="card">
+        <p><b>KIRAN:</b> 1800-599-0019</p>
+        <p><b>AASRA:</b> 9820466726</p>
+        <p><b>iCall:</b> 9152987821</p>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- HELPLINES -->
-  <section id="helpline" class="section fade">
-    <h2>Helpline Numbers (India)</h2>
-    <div class="helpline">
-      <div class="hel"><b>KIRAN</b> — 1800-599-0019</div>
-      <div class="hel"><b>AASRA</b> — +91 9820466726</div>
-      <div class="hel"><b>iCall</b> — +91 9152987821</div>
-      <div class="hel"><b>Snehi</b> — +91 9582208181</div>
-    </div>
-
-    <div style="margin-top:14px;color:var(--muted)">If someone is at immediate risk, contact local emergency services first.</div>
-  </section>
-
-  <section class="center" style="padding:30px 0">
-    <div style="display:inline-block;text-align:left;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));padding:20px;border-radius:12px;border:1px solid rgba(255,255,255,0.02)">
-      <h3 style="margin:0 0 8px;color:var(--neon-1)">Conclusion</h3>
-      <p style="color:var(--muted);margin:0">Be kind — small acts of listening, understanding, and encouraging help can change lives. Together we can break stigma and build supportive communities.</p>
-    </div>
-  </section>
-
+  </div>
 </main>
 
-<footer>
-  <div class="container center">
-    <div style="font-weight:700">© Group-10 — Mental Health Awareness</div>
-    <div style="font-size:.9rem;color:var(--muted)">Built with care • Dark Neon Edition</div>
-  </div>
+<footer style="text-align:center;padding:20px;color:var(--muted)">
+  Made with care 💚 Mental Health Awareness
 </footer>
 
 <script>
-// Mobile toggle
-document.getElementById('mobileBtn')?.addEventListener('click', ()=>{
-  const nav = document.getElementById('navLinks');
-  if(nav.style.display === 'block') nav.style.display = '';
-  else nav.style.display = 'block';
-});
-
-// Mood quick-track (local only)
-const moodButtons = document.querySelectorAll('[data-val]');
-const moodStatus = document.getElementById('moodStatus');
-const MOOD_KEY = 'mh_dark_mood_v1';
-function loadMood(){
-  try{
-    const data = JSON.parse(localStorage.getItem(MOOD_KEY) || '[]');
-    if(!data.length){ moodStatus.textContent = 'No mood recorded yet.'; return; }
-    const last = data[data.length-1];
-    moodStatus.textContent = 'Last: ' + (last.v==1?'Low':last.v==2?'Okay':last.v==3?'Good':'Great') + ' (' + new Date(last.t).toLocaleString() +')';
-  }catch(e){ console.warn(e); }
-}
-moodButtons.forEach(b=>{
-  b.addEventListener('click', ()=>{
-    const v = b.dataset.val;
-    const arr = JSON.parse(localStorage.getItem(MOOD_KEY) || '[]');
-    arr.push({v: parseInt(v), t: Date.now()});
-    localStorage.setItem(MOOD_KEY, JSON.stringify(arr));
-    loadMood();
-    b.animate([{transform:'scale(1)'},{transform:'scale(.96)'},{transform:'scale(1)'}],{duration:220});
+  const ham = document.getElementById("hamburger");
+  const mobileMenu = document.getElementById("mobileMenu");
+  ham.addEventListener("click",()=>{
+    mobileMenu.style.display = mobileMenu.style.display==="block"?"none":"block";
   });
-});
-loadMood();
-
-// Micro-journal
-const saveJournal = document.getElementById('saveJournal');
-const clearJournal = document.getElementById('clearJournal');
-const micro = document.getElementById('micro');
-const journalTime = document.getElementById('journalTime');
-const JOURNAL_KEY = 'mh_dark_journal_v1';
-function loadJournal(){
-  try{
-    const raw = localStorage.getItem(JOURNAL_KEY);
-    if(!raw){ micro.value=''; journalTime.textContent='—'; return; }
-    const obj = JSON.parse(raw);
-    micro.value = obj.text || '';
-    journalTime.textContent = new Date(obj.t).toLocaleString();
-  }catch(e){ console.warn(e); }
-}
-saveJournal.addEventListener('click', ()=>{
-  const text = micro.value || '';
-  localStorage.setItem(JOURNAL_KEY, JSON.stringify({t:Date.now(), text}));
-  loadJournal();
-  saveJournal.textContent = 'Saved!';
-  setTimeout(()=>saveJournal.textContent = 'Save',1200);
-});
-clearJournal.addEventListener('click', ()=>{ localStorage.removeItem(JOURNAL_KEY); loadJournal(); });
-loadJournal();
 </script>
 
 </body>
