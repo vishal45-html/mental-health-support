@@ -1,230 +1,268 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>MindWave — Mental Health Awareness</title>
-<meta name="description" content="MindWave — mental health awareness: learn signs, challenges, practical tips, helplines and calming tools." />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mental Health Awareness — Dark Neon Edition</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#fffdfb;
-    --muted:#6b7280;
-    --accent1:#ffd6e8;
-    --accent2:#d7f5ff;
-    --card:#ffffff;
-    --radius:16px;
+    --bg: #05070d;
+    --card: #0d111a;
+    --neon: #00f7a7;
+    --neon2: #00d4ff;
+    --muted: #c7c7c7;
+    --radius: 16px;
+    --glow: 0 0 18px rgba(0,247,167,0.6), 0 0 30px rgba(0,247,167,0.35);
+    --glow2: 0 0 16px rgba(0,212,255,0.7), 0 0 26px rgba(0,212,255,0.35);
+    font-family:'Poppins', sans-serif;
   }
-  *{box-sizing:border-box}
-  html,body{height:100%;margin:0;font-family:Poppins,system-ui,Segoe UI,Roboto,Arial;background:linear-gradient(180deg,#f8fbff,#fffdfb);color:#111827}
-  .container{max-width:1100px;margin:0 auto;padding:28px}
-  header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:6px}
-  .brand{display:flex;align-items:center;gap:12px}
-  .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent1),var(--accent2));display:flex;align-items:center;justify-content:center;font-weight:800;color:#0f1724;font-size:20px;box-shadow:0 10px 30px rgba(99,102,241,0.06)}
-  nav a{margin-left:14px;color:var(--muted);text-decoration:none;font-weight:600;font-size:14px}
+
+  body{
+    margin:0;
+    background:var(--bg);
+    color:white;
+  }
+
+  /* NAVBAR */
+  .topbar{
+    position:fixed;top:0;left:0;right:0;
+    background:rgba(5,7,13,0.85);
+    backdrop-filter:blur(8px);
+    padding:14px 0;
+    z-index:1000;
+    border-bottom:1px solid rgba(0,247,167,0.2);
+  }
+  .container{max-width:1200px;margin:auto;padding:0 20px;}
+  nav{display:flex;justify-content:space-between;align-items:center;}
+
+  .logo{
+    font-weight:700;font-size:22px;
+    color:var(--neon);
+    text-shadow:var(--glow);
+  }
+
+  .nav-links a{
+    color:white;
+    text-decoration:none;
+    margin-left:18px;
+    font-weight:500;
+    transition:.2s;
+  }
+  .nav-links a:hover{
+    color:var(--neon2);
+    text-shadow:var(--glow2);
+  }
+
   /* HERO */
-  .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;padding:36px 0}
-  .hero-left h1{font-size:clamp(28px,5.2vw,46px);margin:0;line-height:1.02}
-  .lead{color:var(--muted);margin-top:12px;font-size:16px}
-  .cta{margin-top:18px;display:flex;gap:12px}
-  .btn{padding:10px 16px;border-radius:12px;border:0;font-weight:700;cursor:pointer}
-  .btn-primary{background:linear-gradient(90deg,#6d28d9,#06b6d4);color:white;box-shadow:0 10px 28px rgba(99,102,241,0.12)}
-  .btn-ghost{background:transparent;border:1px solid rgba(16,24,40,0.04);color:var(--muted)}
-  /* panel */
-  .panel{background:var(--card);padding:18px;border-radius:16px;box-shadow:0 8px 30px rgba(15,23,42,0.06);border:1px solid rgba(2,6,23,0.04)}
-  .tiny{font-size:13px;color:var(--muted)}
-  /* breathing */
-  .breath-wrap{display:flex;flex-direction:column;align-items:center;gap:10px;padding-top:8px}
-  .breath-circle{width:170px;height:170px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 35% 35%, rgba(99,102,241,0.12), transparent 30%), radial-gradient(circle at 70% 70%, rgba(6,182,212,0.09), transparent 36%);transition:transform .45s}
-  .phase{font-weight:700;color:#0f1724}
-  /* sections */
-  .section{margin-top:36px}
-  .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-top:18px}
-  .card{background:linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.98));padding:18px;border-radius:14px;border:1px solid rgba(2,6,23,0.03);box-shadow:0 10px 30px rgba(16,24,40,0.04)}
-  .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:16px}
-  .gallery img{width:100%;height:150px;object-fit:cover;border-radius:12px;box-shadow:0 8px 20px rgba(2,6,23,0.06)}
-  .resources{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}
-  .resource{min-width:220px;padding:14px;border-radius:12px;background:linear-gradient(90deg, rgba(139,92,246,0.04), rgba(6,182,212,0.02));border:1px solid rgba(2,6,23,0.03)}
-  .quote{margin-top:28px;padding:22px;border-radius:12px;background:linear-gradient(90deg,#fff7d6,#ffd6e0);font-weight:700;text-align:center;color:#0b1220}
-  footer{margin-top:40px;padding:22px;text-align:center;color:var(--muted);font-size:14px}
-  .h2{font-size:22px;margin:0}
-  .challenge-list{list-style:disc;padding-left:18px;color:var(--muted);margin-top:10px}
-  /* responsive */
-  @media (max-width:980px){.hero{grid-template-columns:1fr}.hero-right{order:2}.hero-left{order:1}}
-  @media (max-width:520px){.logo{width:46px;height:46px}.hero-left h1{font-size:28px}}
+  .hero{
+    padding-top:130px;
+    display:flex;
+    gap:40px;
+    align-items:center;
+    flex-wrap:wrap;
+  }
+  .hero h1{
+    font-size:clamp(32px,4vw,56px);
+    color:var(--neon);
+    text-shadow:var(--glow);
+    margin:0 0 12px;
+  }
+  .lead{color:var(--muted);max-width:600px;}
+
+  .cta{
+    display:inline-block;
+    background:var(--neon);
+    color:#000;
+    padding:12px 20px;
+    border-radius:var(--radius);
+    text-decoration:none;
+    font-weight:600;
+    margin-top:18px;
+    box-shadow:var(--glow);
+    transition:.25s;
+  }
+  .cta:hover{
+    background:var(--neon2);
+    box-shadow:var(--glow2);
+  }
+
+  .hero-card{
+    width:100%;max-width:420px;
+    background:var(--card);
+    border-radius:var(--radius);
+    overflow:hidden;
+    box-shadow:0 0 22px rgba(0,247,167,0.2);
+  }
+  .hero-card img{width:100%;height:260px;object-fit:cover;filter:brightness(0.8);}
+  .hero-card .card-body{padding:16px;color:var(--muted)}
+
+  /* SECTIONS */
+  section{padding:70px 0;}
+  h2{
+    color:var(--neon2);
+    text-shadow:var(--glow2);
+    margin-bottom:18px;
+  }
+
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:26px;
+  }
+
+  .card{
+    background:var(--card);
+    padding:20px;
+    border-radius:var(--radius);
+    box-shadow:0 0 15px rgba(0,212,255,0.15);
+    color:var(--muted);
+  }
+
+  .rounded-img{
+    overflow:hidden;border-radius:var(--radius);
+    box-shadow:0 0 20px rgba(0,247,167,0.2);
+  }
+  .rounded-img img{width:100%;height:200px;object-fit:cover;filter:brightness(0.8)}
+
+  /* TABLE */
+  table{width:100%;border-collapse:collapse;background:var(--card);border-radius:var(--radius);overflow:hidden;box-shadow:var(--glow2);}
+  table th, table td{padding:14px;text-align:left;color:white;}
+  table thead{background:rgba(0,247,167,0.2);}
+  table tbody tr:nth-child(even){background:rgba(255,255,255,0.06)}
+
+  /* HELPLINE */
+  .help-item{
+    background:var(--card);
+    padding:14px;
+    border-radius:var(--radius);
+    display:flex;justify-content:space-between;
+    box-shadow:0 0 12px rgba(0,247,167,0.25);
+  }
+  .help-item strong{color:var(--neon)}
+
+  /* FOOTER */
+  footer{
+    padding:40px 0;text-align:center;
+    color:var(--muted);
+    border-top:1px solid rgba(0,247,167,0.2);
+    margin-top:40px;
+  }
 </style>
 </head>
 <body>
+
+<header class="topbar">
   <div class="container">
-    <header>
-      <div class="brand">
-        <div class="logo">MW</div>
-        <div>
-          <div style="font-weight:700">MindWave</div>
-          <div style="font-size:12px;color:var(--muted)">Mental Health Awareness</div>
-        </div>
+    <nav>
+      <div class="logo">MENTAL HEALTH</div>
+      <div class="nav-links">
+        <a href="#intro">Intro</a>
+        <a href="#why">Why</a>
+        <a href="#issues">Issues</a>
+        <a href="#warning">Warning</a>
+        <a href="#care">Care</a>
+        <a href="#friend">Friend</a>
+        <a href="#myths">Myths</a>
+        <a href="#helpline">Helpline</a>
       </div>
-      <nav>
-        <a href="#about">About</a>
-        <a href="#challenges">Challenges</a>
-        <a href="#resources">Resources</a>
-      </nav>
-    </header>
-
-    <!-- HERO -->
-    <section class="hero">
-      <div class="hero-left">
-        <h1>MindWave — Mental Health Awareness</h1>
-        <p class="lead">A clear, presentation-ready site that explains what mental health awareness is, common challenges people face, and practical steps for support and self-care.</p>
-        <div class="cta">
-          <button class="btn btn-primary" id="start-breathe">Try Breathing</button>
-          <button class="btn btn-ghost" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">Learn More</button>
-        </div>
-      </div>
-
-      <div class="hero-right">
-        <div class="panel" style="text-align:left">
-          <div class="tiny">Calm breathing exercise</div>
-          <div style="font-weight:700;margin-top:8px">Wave breathing — 4s inhale • 4s hold • 4s exhale</div>
-
-          <div style="text-align:center;margin-top:12px" class="breath-wrap">
-            <div class="breath-circle" id="breathCircle"><div style="text-align:center"><div class="phase" id="phase">Ready</div><div style="font-size:12px;color:var(--muted);margin-top:6px">4 - 4 - 4 breathing</div></div></div>
-            <div style="display:flex;gap:8px;justify-content:center;margin-top:8px">
-              <button class="btn btn-ghost" id="breathStart" style="border-radius:10px">Start</button>
-              <button class="btn btn-ghost" id="breathStop" style="border-radius:10px">Stop</button>
-            </div>
-          </div>
-        </div>
-
-        <div style="margin-top:14px;display:flex;gap:12px">
-          <div class="panel" style="flex:1;padding:12px;">
-            <div class="tiny">Quick Tip</div>
-            <div style="font-weight:700;margin-top:6px">Take a short walk</div>
-            <div style="font-size:13px;color:var(--muted);margin-top:8px">A brief walk outside can reset mood and reduce stress.</div>
-          </div>
-
-          <div class="panel" style="width:140px;display:flex;align-items:center;justify-content:center;font-weight:700;background:linear-gradient(90deg,#ffd6e8,#d7f5ff);color:#0f1724;border-radius:12px">
-            Need Help?
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ABOUT -->
-    <section id="about" class="section">
-      <div class="card" style="text-align:left">
-        <h2 style="margin-top:0" class="h2">What is Mental Health Awareness?</h2>
-        <p style="color:var(--muted);font-size:15px;margin-top:8px">
-          Mental health awareness means increasing public understanding of mental health — what it is, how common mental health problems can be identified, and where to get help. Awareness reduces stigma, encourages people to seek help early, and builds communities that are more supportive and informed. It includes learning signs and symptoms, knowing practical ways to support someone in distress, and promoting self-care and prevention strategies.
-        </p>
-
-        <h3 style="margin-top:14px">Why it matters</h3>
-        <p style="color:var(--muted);font-size:14px;margin-top:6px">
-          Greater awareness makes it easier for people to access the support they need and can reduce the isolation and shame that often stop people from seeking help. Awareness campaigns, education in schools and workplaces, and open conversations help reshape how society treats emotional and psychological struggles.
-        </p>
-
-        <div class="gallery" style="margin-top:14px">
-          <img src="https://images.pexels.com/photos/4148862/pexels-photo-4148862.jpeg" alt="support" />
-          <img src="https://images.pexels.com/photos/3685539/pexels-photo-3685539.jpeg" alt="calm" />
-          <img src="https://images.pexels.com/photos/4050286/pexels-photo-4050286.jpeg" alt="mindful" />
-        </div>
-      </div>
-    </section>
-
-    <!-- CHALLENGES -->
-    <section id="challenges" class="section">
-      <div class="card" style="text-align:left">
-        <h2 class="h2">Challenges We Face</h2>
-        <p style="color:var(--muted);font-size:14px;margin-top:8px">People with mental health problems often face barriers that make it harder to get help. Common challenges include:</p>
-        <ul class="challenge-list">
-          <li><strong>Stigma and discrimination:</strong> fear of being judged or seen as weak often prevents people from reaching out.</li>
-          <li><strong>Lack of awareness:</strong> not recognizing symptoms or not knowing where to find reliable support.</li>
-          <li><strong>Limited access to care:</strong> cost, long wait times, and lack of nearby services can block treatment.</li>
-          <li><strong>Self-stigma and isolation:</strong> internalized shame can reduce help-seeking and increase loneliness.</li>
-          <li><strong>Information overload & misinformation:</strong> confusion from unreliable sources makes decisions harder.</li>
-        </ul>
-
-        <h3 style="margin-top:12px">Common signs to watch for</h3>
-        <p style="color:var(--muted);font-size:14px;margin-top:6px">
-          Persistent sadness or low mood, excessive worry, withdrawal from friends and activities, changes in sleep or appetite, difficulty concentrating, or sudden changes in behaviour or mood may all be signs that someone needs support.
-        </p>
-      </div>
-    </section>
-
-    <!-- TOOLS -->
-    <section id="tools" class="section">
-      <h2 style="margin:0">Practical Tips & Self-Care</h2>
-      <div class="card-grid">
-        <div class="card">
-          <h3>Connect with others</h3>
-          <p style="color:var(--muted)">Good relationships provide emotional support. Reach out to friends, family, or trusted people — sharing helps reduce burden.</p>
-        </div>
-        <div class="card">
-          <h3>Be active & sleep well</h3>
-          <p style="color:var(--muted)">Physical activity and consistent sleep routines support mood and resilience.</p>
-        </div>
-        <div class="card">
-          <h3>Learn about mental health</h3>
-          <p style="color:var(--muted)">Education reduces fear. Use reliable sources to learn signs, treatments, and coping strategies.</p>
-        </div>
-        <div class="card">
-          <h3>Seek professional help</h3>
-          <p style="color:var(--muted)">If problems persist, consult a mental health professional or local clinic for assessment and care.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- RESOURCES -->
-    <section id="resources" class="section">
-      <div class="card" style="text-align:left">
-        <h2 style="margin-top:0" class="h2">Resources & Helplines</h2>
-        <p style="color:var(--muted);font-size:14px;margin-top:8px">If you or someone else is in immediate danger, contact local emergency services. For non-emergency support:</p>
-        <div class="resources">
-          <div class="resource"><strong>Learn more:</strong><br><a href="https://mind.help/topic/mental-health-awareness/" target="_blank" rel="noopener" style="color:#0f1724">Mental health awareness — Mind.help</a></div>
-          <div class="resource"><strong>International directory:</strong><br><a href="https://www.iasp.info/resources/Crisis_Centres/" target="_blank" rel="noopener" style="color:#0f1724">IASP crisis centres</a></div>
-          <div class="resource"><strong>Self-care guides:</strong><br>Local clinics, helplines, and therapist directories</div>
-        </div>
-      </div>
-    </section>
-
-    <div class="quote">"Awareness opens the door to support — talking helps and seeking help is a sign of strength."</div>
-
-    <footer>
-      <div style="font-size:14px;color:var(--muted)">Disclaimer: This site provides general information and self-help tools. It is not a substitute for professional medical advice, diagnosis, or treatment.</div>
-      <div style="margin-top:8px">© 2025 MindWave • Mental Health Awareness</div>
-    </footer>
+    </nav>
   </div>
+</header>
 
-<script>
-  // Breathing 4-4-4 cycle
-  let breathInterval = null;
-  const breathStart = document.getElementById('breathStart');
-  const breathStop = document.getElementById('breathStop');
-  const phaseEl = document.getElementById('phase');
-  const circle = document.getElementById('breathCircle');
-  const startBtn = document.getElementById('start-breathe');
-  startBtn.addEventListener('click', ()=> breathStart.click());
-  breathStart.addEventListener('click', startBreath);
-  breathStop.addEventListener('click', stopBreath);
+<main class="container">
+  <section id="intro" class="hero">
+    <div class="hero-left">
+      <h1>Mental Health Awareness</h1>
+      <p class="lead">Your mind matters. Mental health affects how we think, feel, and act. Understanding it helps us build strength, balance, and peace.</p>
+      <a class="cta" href="#why">Explore More</a>
+    </div>
 
-  function startBreath(){
-    if(breathInterval) return;
-    let step = 0; let count = 4;
-    phaseEl.textContent = 'Inhale';
-    circle.style.transform = 'scale(1.05)';
-    breathInterval = setInterval(()=>{
-      count--;
-      if(count>0){
-        // keep current phase visible
-      } else {
-        step++; count = 4;
-        const phase = step % 3 === 0 ? 'Inhale' : step % 3 === 1 ? 'Hold' : 'Exhale';
-        phaseEl.textContent = phase;
-        circle.style.transform = (phase==='Inhale') ? 'scale(1.15)' : (phase==='Hold') ? 'scale(1.00)' : 'scale(0.78)';
-      }
-    },1000);
-  }
-  function stopBreath(){clearInterval(breathInterval);breathInterval=null;phaseEl.textContent='Ready';circle.style.transform='scale(1)'}
-</script>
+    <div class="hero-right">
+      <div class="hero-card">
+        <img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=1400&q=80">
+        <div class="card-body">Calm your mind. Understand your emotions. Grow stronger.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="why">
+    <h2>Why Mental Health Matters</h2>
+    <div class="grid">
+      <div class="card">Well-being, emotional balance, and clarity in daily life.</div>
+      <div class="card">Resilience — handling stress and bounce-back ability.</div>
+      <div class="card">Stronger relationships and better communication.</div>
+      <div class="card">Higher productivity and academic focus.</div>
+    </div>
+  </section>
+
+  <section id="issues">
+    <h2>Common Issues</h2>
+    <div class="grid">
+      <div class="card">Stress, anxiety & burnout</div>
+      <div class="card">Depression & emotional overload</div>
+      <div class="card">Sleep disturbance & isolation</div>
+      <div class="card">Overthinking & low confidence</div>
+    </div>
+  </section>
+
+  <section id="warning">
+    <h2>Warning Signs</h2>
+    <div class="grid">
+      <div class="card">Persistent sadness or mood changes</div>
+      <div class="card">Loss of interest in daily activities</div>
+      <div class="card">Sleep & appetite changes</div>
+      <div class="card">Feeling hopeless or drained</div>
+    </div>
+  </section>
+
+  <section id="care">
+    <h2>Self Care Tips</h2>
+    <div class="grid">
+      <div class="card">Proper sleep & hydration</div>
+      <div class="card">Mindfulness & breathing exercises</div>
+      <div class="card">Regular movement / exercise</div>
+      <div class="card">Positive self-talk & gratitude</div>
+    </div>
+  </section>
+
+  <section id="friend">
+    <h2>How to Help a Friend</h2>
+    <div class="grid">
+      <div class="card">Listen without judgement</div>
+      <div class="card">Encourage opening up</div>
+      <div class="card">Stay connected — small check-ins</div>
+      <div class="card">Suggest professional help when needed</div>
+    </div>
+  </section>
+
+  <section id="myths">
+    <h2>Myths vs Facts</h2>
+    <table>
+      <thead><tr><th>Myth</th><th>Fact</th></tr></thead>
+      <tbody>
+        <tr><td>Talking makes it worse</td><td>Talking helps healing</td></tr>
+        <tr><td>Only weak people struggle</td><td>Anyone can struggle — it's normal</td></tr>
+        <tr><td>Mental illness is rare</td><td>It’s very common & treatable</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="helpline">
+    <h2>Helpline Numbers (India)</h2>
+    <div class="grid">
+      <div class="help-item"><span>KIRAN</span> <strong>1800-599-0019</strong></div>
+      <div class="help-item"><span>AASRA</span> <strong>+91 9820466726</strong></div>
+      <div class="help-item"><span>iCall</span> <strong>+91 9152987821</strong></div>
+      <div class="help-item"><span>Snehi</span> <strong>+91 9582208181</strong></div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  © Mental Health Awareness • Dark Neon Glow Edition
+</footer>
+
 </body>
 </html>
