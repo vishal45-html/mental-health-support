@@ -2,85 +2,251 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Mental Health Awareness – Dark Neon Glow</title>
+<title>Mental Health Awareness – Dark Neon Glow Website</title>
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600;700&display=swap" rel="stylesheet">
+
 <style>
+/* BASIC */
+* { margin:0; padding:0; box-sizing:border-box; }
 body {
-    margin: 0;
-    background: #05050a;
-    font-family: Arial, sans-serif;
-    color: #ccffe6;
+    font-family: 'Poppins', sans-serif;
+    background: #05070f;
+    color: #ccffee;
 }
 
-header {
-    padding: 25px;
+/* NAVBAR */
+nav {
+    width: 100%;
+    padding: 20px 40px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0,255,140,0.05);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(0,255,160,0.3);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 999;
+}
+
+nav .logo {
+    font-size: 26px;
+    font-weight: 700;
+    color: #00ffbf;
+    text-shadow: 0 0 12px #00ffbf;
+}
+
+nav a {
+    margin-left: 25px;
+    text-decoration: none;
+    color: #ccffee;
+    font-weight: 500;
+}
+nav a:hover {
+    color: #00eaff;
+    text-shadow: 0 0 12px #00eaff;
+}
+
+/* HERO SECTION */
+.hero {
+    margin-top: 110px;
+    padding: 60px;
     text-align: center;
-    background: #0d0f17;
-    font-size: 35px;
-    font-weight: bold;
-    color: #00ffa6;
-    text-shadow: 0 0 12px #00ffa6;
 }
 
+.hero h1 {
+    font-size: 50px;
+    font-weight: 700;
+    color: #00ffbf;
+    text-shadow: 0 0 20px #00ffbf;
+}
+
+.hero p {
+    font-size: 20px;
+    max-width: 700px;
+    margin: auto;
+    margin-top: 10px;
+}
+
+.hero img {
+    width: 80%;
+    border-radius: 20px;
+    margin-top: 30px;
+    box-shadow: 0 0 30px #00ffc8;
+}
+
+/* SECTION CONTAINER */
 .section {
-    padding: 40px;
-    margin: 25px;
-    background: rgba(0,255,150,0.06);
-    border: 1px solid rgba(0,255,180,0.25);
-    border-radius: 15px;
-    box-shadow: 0 0 20px rgba(0,255,150,0.2);
+    padding: 70px 60px;
+    margin: 30px;
+    background: rgba(0,255,160,0.05);
+    border: 1px solid rgba(0,255,160,0.25);
+    border-radius: 20px;
+    box-shadow: 0 0 25px rgba(0,255,160,0.3);
 }
 
 .section h2 {
-    margin: 0 0 10px 0;
+    font-size: 32px;
+    font-weight: 600;
     color: #00eaff;
-    text-shadow: 0 0 8px #00eaff;
+    text-shadow: 0 0 10px #00eaff;
 }
 
-img {
+.section p {
+    margin-top: 10px;
+    font-size: 18px;
+    line-height: 1.7;
+}
+
+/* GRID IMAGE CARDS */
+.grid {
+    margin-top: 30px;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.card {
+    padding: 20px;
+    border-radius: 15px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(0,255,200,0.2);
+    box-shadow: 0 0 20px rgba(0,255,200,0.2);
+}
+
+.card img {
     width: 100%;
-    max-width: 600px;
     border-radius: 12px;
-    margin-top: 15px;
-    box-shadow: 0 0 18px rgba(0,255,200,0.3);
+    margin-bottom: 15px;
+    box-shadow: 0 0 20px #00ffc8;
+}
+
+/* HELPLINES */
+.helpline {
+    margin-top: 30px;
+    padding: 20px;
+    border: 1px solid rgba(0,255,220,0.2);
+    border-radius: 15px;
+}
+
+.helpline div {
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+/* FOOTER */
+footer {
+    padding: 30px;
+    text-align: center;
+    background: #0a0f14;
+    color: #88ffd7;
+    font-size: 14px;
+    margin-top: 40px;
+    border-top: 1px solid rgba(0,255,200,0.2);
+    text-shadow: 0 0 10px #00ffc8;
 }
 </style>
 </head>
+
 <body>
 
-<header>Mental Health Awareness – Dark Neon Website</header>
+<!-- NAVBAR -->
+<nav>
+    <div class="logo">Mental Health</div>
+    <div>
+        <a href="#intro">Home</a>
+        <a href="#stress">Stress</a>
+        <a href="#depression">Depression</a>
+        <a href="#care">Self Care</a>
+        <a href="#support">Support</a>
+        <a href="#helpline">Helplines</a>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="intro">
+    <h1>Mental Health Awareness</h1>
+    <p>Understanding mental health is the first step toward improving your emotional, psychological, and social well-being.</p>
+
+    <img src="https://images.unsplash.com/photo-1533227268428-f9ed0900fb3b?auto=format&fit=crop&w=1200&q=80">
+</section>
 
 <!-- SECTION 1 -->
 <div class="section">
-<h2>1. What Is Mental Health?</h2>
-<p>Mental health affects how we think, feel and act. It is important for emotional well-being, decision-making, and relationships.</p>
+<h2>What Is Mental Health?</h2>
+<p>Mental health affects how we think, feel, and act. It helps determine how we handle stress, relate to others, and make healthy choices.</p>
 
-<!-- REAL IMAGE (BASE64 PNG) -->
-<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAoAAAAHgCAYAAABwVdLrAAAACXBIWXMAAAsTAAALEwEAmpwYAAAFSklEQVR4nO3dyZGbSBRA4a8oCqkoCqkoCqkoCqkoCqkoCqkoCqkoCqkoCqkoCqkoCqkoCvnXneCMVbZt7M7cz8z7sDPzZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ/95u9CwC8D8D4A8D8D4A8D8D4A8D8D4A8D8D4A8D8D4A8D8D4A8D8D4A8D8D4A8D8D4A8D8D4A8D8D4A8D8P4G8kFqv1+t1u91u93u93u90ul0ql0ul0ul0ul0ul0u90ul0ql0ul0ul0ul0ul0u91791+kUilUilUilUilUilUil0ql0ul0ul0ul0ul0u90ul0ql0ul0ul0ul0ul0u91u90ul0ql0ul0ul0ul0ul0u90ul0ql0ul0ul0ul0ul0u90ul0ql0ul0ul0ul0ul0u90ul0ql0ul0ul0ul0ul0u93u93+ry4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi7uP+H5a8DQMA8D8D4A8D8D4A8D8D4A8D8D4A8D8D4A8D8D4A8D8D4A8D8D4A8D8D4A8D8D4A8D8D4A8D8D4A8D8D4A8D8PwX+AFGp0ul0ul0ul0ul0ul0ul0ul0ul0ul0ul0ul0ul0ql0ul0ul0ul0ul0u90ul0ql0ul0ul0ul0ul0u90ul0ql0ul0ul0ul0ul0u90ul0ql0ul0ul0ul0ul0u93u92u93u90ul0ql0ul0ul0ul0ul0u90ul0ql0ul0ul0ul0ul0u93u91/9u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u/+fwG8pDrzW9YUowAAAABJRU5ErkJggg==" />
+<div class="grid">
+    <div class="card"><img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=1200&q=80"><p>Calm mind leads to better emotional balance.</p></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1200&q=80"><p>Mental clarity improves relationships.</p></div>
+</div>
 </div>
 
 <!-- SECTION 2 -->
-<div class="section">
-<h2>2. Stress & Anxiety</h2>
-<p>Stress comes from academic pressure, deadlines and personal expectations. Anxiety comes from overthinking and worrying excessively.</p>
+<div class="section" id="stress">
+<h2>Stress & Anxiety</h2>
+<p>Stress comes from academic pressure, overthinking, deadlines, and personal expectations. Anxiety comes from fear or constant worry.</p>
 
-<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAoAAAAGQCAYAAADPxq8RAAAA..." />
+<div class="grid">
+    <div class="card"><img src="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?auto=format&fit=crop&w=1200&q=80"><p>Stress can affect both mind and body.</p></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=1200&q=80"><p>Anxiety can make daily life difficult.</p></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80"><p>Talking about stress helps reduce the load.</p></div>
+</div>
 </div>
 
 <!-- SECTION 3 -->
-<div class="section">
-<h2>3. Depression & Overthinking</h2>
-<p>Depression affects mood, sleep, appetite, and interest in daily activities. Overthinking makes the mind tired and stressed.</p>
+<div class="section" id="depression">
+<h2>Depression</h2>
+<p>Depression is more than sadness — it affects energy, motivation, sleep, appetite, and interest in life.</p>
 
-<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAoAAAAGQCAYAAADPxq8RAAAA..." />
+<div class="grid">
+    <div class="card"><img src="https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?auto=format&fit=crop&w=1200&q=80"><p>Depression is a real illness, not a weakness.</p></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1200&q=80"><p>You are not alone. Many people feel this too.</p></div>
+</div>
 </div>
 
 <!-- SECTION 4 -->
-<div class="section">
-<h2>4. Self-care & Healing</h2>
-<p>Healing happens slowly. Meditation, sleep, exercise, and talking to someone you trust helps your mental stability.</p>
+<div class="section" id="care">
+<h2>Self-Care & Healing</h2>
+<p>Self-care improves mental and emotional well-being. Small consistent habits create huge positive changes.</p>
 
-<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAoAAAAGQCAYAAADPxq8RAAAA..." />
+<div class="grid">
+    <div class="card"><img src="https://images.unsplash.com/photo-1527236438218-d82077ae1f85?auto=format&fit=crop&w=1200&q=80"><p>Meditation reduces stress and improves focus.</p></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1526403224743-4f9a2f4a1ce1?auto=format&fit=crop&w=1200&q=80"><p>Journaling helps you understand emotions.</p></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1555231957-2226ab51d878?auto=format&fit=crop&w=1200&q=80"><p>Healthy habits develop a stronger mind.</p></div>
 </div>
+</div>
+
+<!-- SECTION 5 -->
+<div class="section" id="support">
+<h2>Helping a Friend</h2>
+<p>A listening ear and a supportive presence can save a life. People heal faster when they are not alone.</p>
+
+<div class="grid">
+    <div class="card"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=1200&q=80"><p>Support someone by simply being there.</p></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1520869562399-9f79b2f7a163?auto=format&fit=crop&w=1200&q=80"><p>Listening without judgment builds trust.</p></div>
+</div>
+</div>
+
+<!-- HELPLINES -->
+<div class="section" id="helpline">
+<h2>Helpline Numbers (India)</h2>
+
+<div class="helpline">
+    <div><b>KIRAN:</b> 1800-599-0019</div>
+    <div><b>AASRA:</b> +91 9820466726</div>
+    <div><b>iCall:</b> +91 9152987821</div>
+    <div><b>Snehi:</b> +91 9582208181</div>
+</div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    © 2025 • Dark Neon Mental Health Website • Made by Vishal
+</footer>
 
 </body>
 </html>
