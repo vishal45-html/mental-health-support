@@ -1,254 +1,243 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>MindEase - Mental Wellness Support</title>
+import React, { useState, useEffect, useRef } from "react";
 
-<style>
-:root {
-  --bg: #f8fbff;
-  --text: #263238;
-  --muted: #607d8b;
-  --accent: #6ab8ff;
-  --accent-soft: #e8f4ff;
-  --card: rgba(255,255,255,0.6);
-  --shadow: 0 20px 45px rgba(0,0,0,0.08);
-  --radius: 22px;
-  --blur: blur(18px);
-  font-family: "Inter", system-ui, sans-serif;
-}
+// Single-file React component for a mental-health focused website.
+// Tailwind CSS classes are used for styling (assumes Tailwind is configured in the project).
+// Save as MentalHealthSite.jsx and import into your app (or paste into a CodeSandbox).
 
-body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.7;
-}
+export default function MentalHealthSite() {
+  // Mood tracker state (saved to localStorage)
+  const [mood, setMood] = useState(5);
+  const [note, setNote] = useState("");
+  const [history, setHistory] = useState([]);
 
-/* NAV */
-.nav {
-  position: sticky; top: 0;
-  backdrop-filter: blur(12px);
-  background: rgba(255,255,255,0.7);
-  border-bottom: 1px solid #dfeaf1;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-  z-index: 10;
-}
-.nav-inner {
-  max-width: 1200px;
-  margin: auto;
-  padding: 1rem 1.3rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.brand {
-  font-weight: 700;
-  font-size: 1.25rem;
-  color: var(--accent);
-}
-.nav a {
-  margin-left: 1.3rem;
-  text-decoration: none;
-  font-weight: 600;
-  color: var(--muted);
-}
-.nav a:hover {
-  color: var(--accent);
-}
+  // Breathing exercise timer
+  const [breathing, setBreathing] = useState(false);
+  const [phase, setPhase] = useState("Inhale");
+  const [count, setCount] = useState(4);
+  const breathIntervalRef = useRef(null);
 
-/* HERO */
-.hero {
-  padding: 5rem 1rem;
-  text-align: center;
-  background: url("https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?w=1600") center/cover no-repeat;
-  position: relative;
-}
-.hero::before {
-  content: "";
-  position: absolute; inset: 0;
-  background: rgba(255,255,255,0.75);
-  backdrop-filter: blur(6px);
-}
-.hero-content {
-  position: relative;
-  max-width: 750px;
-  margin: auto;
-}
-.hero h1 {
-  font-size: 2.6rem;
-  font-weight: 700;
-}
-.hero p {
-  color: var(--muted);
-  font-size: 1.15rem;
-}
+  useEffect(() => {
+    // load history from localStorage
+    const saved = localStorage.getItem("mh_mood_history");
+    if (saved) setHistory(JSON.parse(saved));
+  }, []);
 
-/* CONTENT LAYOUT */
-.wrap {
-  max-width: 1200px;
-  margin: auto;
-  padding: 3rem 1.4rem;
-}
-.section-title {
-  text-align: center;
-  font-size: 2rem;
-  margin-bottom: 2.5rem;
-}
+  useEffect(() => {
+    localStorage.setItem("mh_mood_history", JSON.stringify(history));
+  }, [history]);
 
-/* CARDS */
-.grid {
-  display: grid;
-  gap: 2rem;
-}
-@media(min-width: 760px) {
-  .grid { grid-template-columns: repeat(3, 1fr); }
-}
-.card {
-  backdrop-filter: var(--blur);
-  background: var(--card);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  overflow: hidden;
-  display: flex; flex-direction: column;
-}
-.thumb {
-  height: 200px;
-  background-size: cover;
-  background-position: center;
-}
-.card-body {
-  padding: 1.4rem;
-}
-.card-body h3 {
-  margin-top: 0;
-  font-weight: 600;
-}
-.card-body p {
-  color: var(--muted);
-}
+  function saveMood() {
+    const entry = { date: new Date().toISOString(), mood, note };
+    setHistory([entry, ...history].slice(0, 30)); // keep last 30
+    setNote("");
+  }
 
-/* FOOTER */
-footer {
-  margin-top: 4rem;
-  padding: 1.5rem;
-  text-align: center;
-  background: #ffffffa6;
-  backdrop-filter: blur(12px);
-  border-top: 1px solid #dfeaf1;
-  color: var(--muted);
-}
-</style>
-</head>
+  function clearHistory() {
+    setHistory([]);
+  }
 
-<body>
+  // Breathing exercise: simple 4-4-4 cycle (inhale-hold-exhale)
+  function startBreathing() {
+    if (breathing) return;
+    setBreathing(true);
+    setPhase("Inhale");
+    setCount(4);
 
-<!-- NAV -->
-<div class="nav">
-  <div class="nav-inner">
-    <div class="brand">MindEase</div>
-    <div>
-      <a href="#feel">Feelings</a>
-      <a href="#cope">Coping</a>
-      <a href="#support">Support</a>
+    breathIntervalRef.current = setInterval(() => {
+      setCount((c) => {
+        if (c > 1) return c - 1;
+        // move to next phase
+        setPhase((p) => (p === "Inhale" ? "Hold" : p === "Hold" ? "Exhale" : "Inhale"));
+        return 4;
+      });
+    }, 1000);
+  }
+
+  function stopBreathing() {
+    setBreathing(false);
+    setPhase("Inhale");
+    setCount(4);
+    clearInterval(breathIntervalRef.current);
+  }
+
+  // Accessible skip link handler (example)
+  useEffect(() => {
+    return () => clearInterval(breathIntervalRef.current);
+  }, []);
+
+  return (
+    <div className="min-h-screen bg-gray-50 text-gray-900">
+      <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-white px-3 py-2 rounded shadow">Skip to content</a>
+
+      {/* Header / Hero */}
+      <header className="bg-gradient-to-r from-indigo-600 to-teal-500 text-white py-14">
+        <div className="max-w-5xl mx-auto px-6">
+          <h1 className="text-3xl sm:text-4xl font-extrabold">Mindful Space</h1>
+          <p className="mt-3 text-lg sm:text-xl max-w-2xl">A calm, compassionate place to learn coping tools, track your mood, and find resources.</p>
+
+          <div className="mt-6 flex flex-col sm:flex-row gap-3">
+            <a href="#tools" className="inline-block bg-white text-indigo-700 px-4 py-2 rounded shadow font-medium">Try a breathing exercise</a>
+            <a href="#resources" className="inline-block bg-white/30 hover:bg-white/50 px-4 py-2 rounded">Find help & resources</a>
+          </div>
+        </div>
+      </header>
+
+      <main id="main" className="max-w-5xl mx-auto px-6 -mt-8">
+        <section className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+          {/* Left column: tools */}
+          <div className="lg:col-span-2 bg-white p-6 rounded-lg shadow">
+            <h2 className="text-2xl font-semibold"> practical tools</h2>
+            <p className="text-sm text-gray-600 mt-1">Short exercises you can do now to feel calmer and more focused.</p>
+
+            {/* Breathing exercise card */}
+            <div id="tools" className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="p-4 border rounded-lg">
+                <h3 className="font-medium">4–4–4 Breathing</h3>
+                <p className="text-sm text-gray-600 mt-2">Inhale 4s → Hold 4s → Exhale 4s. Repeat for 1–3 minutes.</p>
+
+                <div className="mt-4">
+                  <div className="text-3xl font-bold">{phase}</div>
+                  <div className="text-4xl mt-2">{count}</div>
+
+                  <div className="mt-4 flex gap-2">
+                    <button onClick={startBreathing} className="px-3 py-2 rounded bg-indigo-600 text-white">Start</button>
+                    <button onClick={stopBreathing} className="px-3 py-2 rounded border">Stop</button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Mood tracker card */}
+              <div className="p-4 border rounded-lg">
+                <h3 className="font-medium">Mood Tracker</h3>
+                <p className="text-sm text-gray-600 mt-2">Rate your mood and add a short note. Saved locally in your browser.</p>
+
+                <div className="mt-3">
+                  <label className="block text-sm">Mood: <span className="font-semibold">{mood}/10</span></label>
+                  <input type="range" min="1" max="10" value={mood} onChange={(e) => setMood(parseInt(e.target.value))} className="w-full mt-2" />
+
+                  <label className="block text-sm mt-3">Note</label>
+                  <textarea value={note} onChange={(e) => setNote(e.target.value)} className="w-full mt-1 p-2 border rounded" rows={3} />
+
+                  <div className="mt-3 flex gap-2">
+                    <button onClick={saveMood} className="px-3 py-2 bg-teal-600 text-white rounded">Save</button>
+                    <button onClick={clearHistory} className="px-3 py-2 border rounded">Clear</button>
+                  </div>
+                </div>
+
+                {/* history */}
+                <div className="mt-4">
+                  <h4 className="text-sm font-medium">Recent entries</h4>
+                  <ul className="mt-2 max-h-40 overflow-auto text-sm">
+                    {history.length === 0 && <li className="text-gray-500">No entries yet.</li>}
+                    {history.map((h, idx) => (
+                      <li key={idx} className="py-1 border-b last:border-b-0">
+                        <div className="text-xs text-gray-500">{new Date(h.date).toLocaleString()}</div>
+                        <div>Mood: {h.mood} — {h.note || <span className="text-gray-400">(no note)</span>}</div>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              {/* Simple grounding exercise */}
+              <div className="p-4 border rounded-lg col-span-1 sm:col-span-2">
+                <h3 className="font-medium">Grounding — 5-4-3-2-1 exercise</h3>
+                <p className="text-sm text-gray-600 mt-2">Identify: 5 things you can see, 4 you can feel, 3 you can hear, 2 you can smell, 1 you can taste. Helps bring attention to the present.</p>
+                <button className="mt-3 px-3 py-2 bg-indigo-600 text-white rounded">Start Grounding</button>
+              </div>
+            </div>
+
+            {/* Articles / learn more (Expanded with more mental health information + real-image sections) */}
+            <div className=\"mt-6\">
+              {/* Mental health educational section with real images */}
+              <section className=\"mt-6 space-y-6\">
+                <h3 className=\"text-2xl font-semibold\">Understanding Mental Health</h3>
+                <p className=\"text-sm text-gray-600\">Mental health includes our emotional, psychological, and social well-being. It affects how we think, feel, act, handle stress, relate to others, and make decisions. Taking care of mental health is just as important as taking care of physical health.</p>
+
+                {/* Image block */}
+                <div className=\"w-full\">
+                  <img src=\"https://images.pexels.com/photos/4101143/pexels-photo-4101143.jpeg\" alt=\"Mental wellness\" className=\"w-full rounded-xl shadow\" />
+                </div>
+
+                <h4 className=\"text-xl font-semibold mt-4\">Common Mental Health Challenges</h4>
+                <ul className=\"list-disc pl-6 text-sm text-gray-700 space-y-1\">
+                  <li>Anxiety disorders – excessive worry, panic, restlessness.</li>
+                  <li>Depression – persistent sadness, loss of interest, fatigue.</li>
+                  <li>Stress – emotional or physical tension due to pressure.</li>
+                  <li>Burnout – exhaustion caused by prolonged stress.</li>
+                </ul>
+
+                <div className=\"w-full mt-4\">
+                  <img src=\"https://images.pexels.com/photos/897817/pexels-photo-897817.jpeg\" alt=\"Anxiety support\" className=\"w-full rounded-xl shadow\" />
+                </div>
+
+                <h4 className=\"text-xl font-semibold mt-4\">Ways to Improve Mental Well-Being</h4>
+                <p className=\"text-sm text-gray-600\">Small habits can greatly improve emotional balance and resilience:</p>
+                <ul className=\"list-disc pl-6 text-sm text-gray-700 space-y-1 mt-2\">
+                  <li>Practice mindfulness and meditation regularly
+              <h3 className="text-xl font-semibold">Learn</h3>
+              <p className="text-sm text-gray-600 mt-1">Short, evidence-based articles and tips.</p>
+
+              <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <article className="p-4 border rounded">
+                  <h4 className="font-medium">Managing anxiety — quick techniques</h4>
+                  <p className="text-sm text-gray-600 mt-2">Breathing, grounding, and brief behavioral experiments.</p>
+                </article>
+
+                <article className="p-4 border rounded">
+                  <h4 className="font-medium">Better sleep habits</h4>
+                  <p className="text-sm text-gray-600 mt-2">Simple routines that improve sleep quality over time.</p>
+                </article>
+              </div>
+            </div>
+          </div>
+
+          {/* Right column: resources + emergency */}
+          <aside className="space-y-4">
+            <div className="bg-white p-4 rounded-lg shadow">
+              <h3 className="font-semibold">Resources</h3>
+              <p className="text-sm text-gray-600 mt-2">Local & online support, helplines, and recommended reading.</p>
+
+              <ul className="mt-3 text-sm space-y-2">
+                <li><a className="underline" href="#">Find a therapist (placeholder)</a></li>
+                <li><a className="underline" href="#">Self-help guides</a></li>
+                <li><a className="underline" href="#">Crisis support (add local number)</a></li>
+              </ul>
+
+              <div className="mt-3 text-xs text-gray-500">*Please add your country's emergency and crisis hotline numbers here. If you are in immediate danger, call local emergency services.</div>
+            </div>
+
+            <div className="bg-red-50 border-l-4 border-red-400 p-4 rounded">
+              <h4 className="font-semibold text-red-700">Immediate help</h4>
+              <p className="text-sm text-red-700 mt-1">If you are at risk of harming yourself or others, contact local emergency services immediately.</p>
+              <p className="text-sm mt-2">Add national and local helpline numbers here for your region. (This area is intentionally prominent.)</p>
+            </div>
+
+            <div className="bg-white p-4 rounded shadow">
+              <h4 className="font-semibold">Tips for friends</h4>
+              <p className="text-sm text-gray-600 mt-2">How to support someone — listen, ask open questions, encourage professional help.</p>
+            </div>
+          </aside>
+        </section>
+
+        {/* Footer / contact */}
+        <section className="mt-8 bg-white p-6 rounded shadow">
+          <h3 className="text-lg font-semibold">Contact / Feedback</h3>
+          <p className="text-sm text-gray-600 mt-1">This site is not a replacement for professional care. For feedback or partnerships, leave a message.</p>
+
+          <form className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3" onSubmit={(e) => { e.preventDefault(); alert('Thanks — message recorded locally (demo)'); }}>
+            <input placeholder="Your name" className="p-2 border rounded" />
+            <input placeholder="Email (optional)" className="p-2 border rounded" />
+            <textarea placeholder="Message" className="p-2 border rounded col-span-1 sm:col-span-2" rows={4}></textarea>
+            <button type="submit" className="px-4 py-2 bg-indigo-600 text-white rounded">Send</button>
+          </form>
+
+          <div className="mt-4 text-xs text-gray-500">Disclaimer: This website provides self-help tools and information only. It is not a substitute for professional medical advice, diagnosis, or treatment.</div>
+        </section>
+
+        <footer className="mt-6 text-center text-sm text-gray-500 pb-8">© {new Date().getFullYear()} Mindful Space — Built with care</footer>
+      </main>
     </div>
-  </div>
-</div>
-
-<!-- HERO -->
-<header class="hero">
-  <div class="hero-content">
-    <h1>You are safe. You are seen. You are not alone.</h1>
-    <p>Your feelings matter. Healing begins with understanding, gentleness, and time.</p>
-  </div>
-</header>
-
-<!-- FEELINGS -->
-<section id="feel" class="wrap">
-  <h2 class="section-title">Understanding Your Feelings</h2>
-
-  <div class="grid">
-
-    <div class="card">
-      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1525253086316-d0c936c814f8?w=1600');"></div>
-      <div class="card-body">
-        <h3>Anxiety</h3>
-        <p>Your mind is not trying to hurt you. It is trying to protect you — just a little too hard.</p>
-        <p><strong>Try:</strong> Slow breathing and grounding your senses.</p>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=1600');"></div>
-      <div class="card-body">
-        <h3>Sadness / Low Mood</h3>
-        <p>You are not weak. You are tired from fighting battles that others cannot see.</p>
-        <p><strong>Try:</strong> Small steps. Open curtains. Drink water. Message one friend.</p>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1600');"></div>
-      <div class="card-body">
-        <h3>Stress & Burnout</h3>
-        <p>Your value is not measured by productivity. You deserve rest simply because you exist.</p>
-        <p><strong>Try:</strong> Take a 60-second quiet pause.</p>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- COPING -->
-<section id="cope" class="wrap">
-  <h2 class="section-title">Gentle Coping Tools</h2>
-
-  <div class="grid">
-
-    <div class="card">
-      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?w=1600');"></div>
-      <div class="card-body">
-        <h3>Breathing Reset</h3>
-        <p>Inhale 4 • Hold 4 • Exhale 6. This tells your nervous system “I am safe.”</p>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1518887559646-8be811865e0e?w=1600');"></div>
-      <div class="card-body">
-        <h3>Talk to Someone Safe</h3>
-        <p>You don’t need perfect words. You just need connection.</p>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6?w=1600');"></div>
-      <div class="card-body">
-        <h3>Gentle Movement</h3>
-        <p>A short walk, stretching, or loosening your shoulders can release stored tension.</p>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- SUPPORT -->
-<section id="support" class="wrap">
-  <h2 class="section-title">You Deserve Support</h2>
-  <p style="text-align:center;color:var(--muted);max-width:650px;margin:auto;">
-    Reaching out is a strength, not a weakness.
-  </p>
-
-  <ul style="list-style:none;padding:0;text-align:center;margin-top:1.5rem;">
-    <li><a href="https://www.7cups.com" target="_blank" style="color:var(--accent);font-weight:600;">💬 7 Cups</a> — Free emotional support</li>
-    <li><a href="https://yourdost.com" target="_blank" style="color:var(--accent);font-weight:600;">🌿 YourDOST</a> — Counseling support (India)</li>
-  </ul>
-</section>
-
-<footer>
-Your presence matters. One small breath at a time. 💙
-</footer>
-
-</body>
-</html>
+  );
+}
