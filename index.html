@@ -1,334 +1,231 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Mental Health Awareness</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
-    :root{
-      --bg: #f7fff7;
-      --soft-green: #dff6e9;
-      --brand: #66b18b;
-      --muted: #6b6b6b;
-      --card-shadow: 0 8px 24px rgba(16,24,40,0.06);
-      --radius: 14px;
-      font-family: 'Poppins', system-ui;
-      scroll-behavior: smooth;
-    }
-
-    *{box-sizing:border-box}
-    body{margin:0;background:var(--bg);color:#0f1724}
-
-    /* NAVBAR */
-    .topbar{
-      position:fixed;top:0;left:0;right:0;
-      background:rgba(255,255,255,0.92);
-      backdrop-filter:blur(6px);
-      box-shadow:0 6px 18px rgba(0,0,0,0.06);
-      z-index:999;
-    }
-    .container{max-width:1100px;margin:auto;padding:0 20px}
-    nav{display:flex;justify-content:space-between;align-items:center;padding:12px 0}
-
-    .brand{display:flex;align-items:center;gap:12px}
-    .logo{
-      width:44px;height:44px;border-radius:12px;
-      background:linear-gradient(135deg,var(--brand),#8cd7b5);
-      display:flex;align-items:center;justify-content:center;
-      color:white;font-weight:700;
-    }
-
-    .nav-links{display:flex;gap:14px}
-    .nav-links a{
-      color:var(--muted);text-decoration:none;
-      padding:8px 12px;border-radius:10px;font-weight:600;
-    }
-    .nav-links a:hover, .nav-links a.active{
-      background:var(--soft-green);color:var(--brand)
-    }
-    .hamburger{display:none}
-
-    /* HERO */
-    .hero{
-      display:flex;gap:36px;align-items:center;
-      padding:120px 0 60px;
-    }
-    .hero-left{flex:1}
-    .chip{
-      display:inline-block;padding:6px 10px;border-radius:999px;
-      background:#f1fff4;color:var(--brand);font-weight:600;
-    }
-    .hero h1{font-size:clamp(30px,4vw,45px);margin:12px 0}
-    .lead{color:var(--muted)}
-    .actions{margin-top:14px;display:flex;gap:10px}
-    .cta{
-      background:var(--brand);color:white;padding:12px 18px;
-      text-decoration:none;border-radius:12px;font-weight:600;
-    }
-
-    .hero-card{
-      flex:1;max-width:460px;background:white;border-radius:20px;
-      overflow:hidden;box-shadow:var(--card-shadow);
-    }
-    .hero-card img{
-      width:100%;height:280px;object-fit:cover;
-    }
-
-    /* GRID + CARD */
-    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
-    .card{
-      background:white;padding:18px;border-radius:var(--radius);
-      box-shadow:var(--card-shadow)
-    }
-    .rounded-img img{
-      border-radius:12px;width:100%;height:180px;object-fit:cover;
-      box-shadow:var(--card-shadow)
-    }
-
-    /* TABLE */
-    table{width:100%;border-collapse:collapse;margin-top:10px}
-    table th{background:var(--soft-green);padding:10px;color:var(--brand)}
-    table td{padding:10px;background:white}
-
-    /* MOBILE */
-    @media (max-width:880px){
-      .grid{grid-template-columns:1fr}
-      .hero{flex-direction:column;padding-top:110px}
-      .nav-links{display:none}
-      .hamburger{
-        display:block;border:0;background:none;font-size:24px;
-      }
-      .mobile-menu{
-        display:none;position:absolute;left:20px;right:20px;top:70px;
-        background:white;padding:12px;border-radius:12px;
-        box-shadow:var(--card-shadow)
-      }
-      .mobile-menu a{
-        display:block;padding:10px;color:var(--muted);
-        text-decoration:none;
-      }
+    body {
+      font-family: 'Inter', sans-serif;
     }
   </style>
 </head>
 
-<body>
-<header class="topbar">
-  <div class="container">
-    <nav>
-      <div class="brand">
-        <div class="logo">MH</div>
-        <div>
-          <div style="font-weight:700">Mental Health</div>
-          <div style="font-size:12px;color:var(--muted)">Awareness</div>
-        </div>
-      </div>
+<body class="bg-gradient-to-b from-slate-50 to-white text-slate-900 antialiased">
 
-      <div class="nav-links" id="navLinks">
-        <a href="#intro">Introduction</a>
-        <a href="#why">Why It Matters</a>
-        <a href="#issues">Common Issues</a>
-        <a href="#warning">Warning Signs</a>
-        <a href="#care">Take Care</a>
-        <a href="#friend">Help a Friend</a>
-        <a href="#myths">Myths</a>
-        <a href="#spread">Spread</a>
-        <a href="#helpline">Helplines</a>
+  <!-- HEADER -->
+  <header class="max-w-6xl mx-auto px-6 py-8 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-center text-white font-bold text-lg">
+        MH
       </div>
+      <div>
+        <h1 class="text-xl font-semibold">Mindful — Mental Health Awareness</h1>
+        <p class="text-sm text-slate-500">Support. Learn. Reach out.</p>
+      </div>
+    </div>
 
-      <button class="hamburger" id="hamburger">☰</button>
+    <nav class="hidden md:flex gap-6 text-sm text-slate-700">
+      <a href="#about" class="hover:underline">About</a>
+      <a href="#signs" class="hover:underline">Signs</a>
+      <a href="#resources" class="hover:underline">Resources</a>
+      <a href="#help" class="hover:underline">Get Help</a>
     </nav>
 
-    <div id="mobileMenu" class="mobile-menu">
-      <a href="#intro">Introduction</a>
-      <a href="#why">Why It Matters</a>
-      <a href="#issues">Common Issues</a>
-      <a href="#warning">Warning Signs</a>
-      <a href="#care">Take Care</a>
-      <a href="#friend">Help a Friend</a>
-      <a href="#myths">Myths</a>
-      <a href="#spread">Spread</a>
-      <a href="#helpline">Helplines</a>
-    </div>
-  </div>
-</header>
+    <button class="ml-4 bg-indigo-600 text-white px-4 py-2 rounded-md text-sm hover:bg-indigo-700">Volunteer</button>
+  </header>
 
-<main style="padding-top:90px">
-  <div class="container">
+  <!-- HERO SECTION -->
+  <main class="max-w-6xl mx-auto px-6">
+    <section class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center py-12">
+      <div>
+        <h2 class="text-3xl md:text-4xl font-extrabold leading-tight">
+          Mental health matters — for everyone.
+        </h2>
 
-    <!-- HERO -->
-    <section class="hero" id="intro">
-      <div class="hero-left">
-        <div class="chip">Mental Health Awareness</div>
-        <h1>Your Mental Health Matters</h1>
-        <p class="lead">Good mental health improves how we think, feel, act, and connect with others.</p>
+        <p class="mt-4 text-slate-700">
+          Join a community that learns, supports, and reduces the stigma around mental health. 
+          Find practical tips, crisis resources, and ways to help others.
+        </p>
 
-        <div class="actions">
-          <a class="cta" href="#why">Learn more</a>
-          <a class="cta" href="#helpline" style="background:white;color:var(--brand);border:2px solid var(--brand)">Get Help</a>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="#help" class="inline-block px-5 py-3 bg-indigo-600 text-white rounded-md font-medium">Get Help Now</a>
+          <a href="#resources" class="inline-block px-5 py-3 border border-slate-200 rounded-md text-slate-700">Explore Resources</a>
+        </div>
+
+        <div class="mt-8 grid grid-cols-3 gap-4 text-center text-sm">
+          <div class="p-4 bg-white rounded-lg shadow-sm">
+            <div class="text-2xl font-bold">1 in 5</div>
+            <div class="text-slate-500">Adults experience mental illness each year.</div>
+          </div>
+
+          <div class="p-4 bg-white rounded-lg shadow-sm">
+            <div class="text-2xl font-bold">Support</div>
+            <div class="text-slate-500">Community, hotlines, professionals.</div>
+          </div>
+
+          <div class="p-4 bg-white rounded-lg shadow-sm">
+            <div class="text-2xl font-bold">Confidential</div>
+            <div class="text-slate-500">Help that respects your privacy.</div>
+          </div>
         </div>
       </div>
 
-      <div class="hero-card">
-        <img src="https://cdn.pixabay.com/photo/2017/08/01/10/42/people-2569205_1280.jpg">
-        <div style="padding:18px;color:var(--muted)">
-          Tools, tips & emotional support in one place.
+      <!-- CSS GRAPHIC (NO IMAGES) -->
+      <div class="order-first md:order-last">
+        <div class="w-full h-64 md:h-80 rounded-xl bg-gradient-to-br from-indigo-50 to-indigo-100 
+                    flex items-center justify-center border border-indigo-100">
+          <div class="text-center p-6">
+            <div class="text-4xl font-bold text-indigo-600">💬</div>
+            <p class="mt-3 text-slate-600">Talk. Listen. Heal.</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- WHY IT MATTERS -->
-    <section id="why">
-      <h2>Why Mental Health Matters</h2>
-      <div class="grid">
-        <div class="card">
-          <ul style="color:var(--muted)">
-            <li>Improves well-being</li>
-            <li>Builds resilience</li>
-            <li>Boosts productivity</li>
-            <li>Strengthens relationships</li>
-            <li>Supports personal growth</li>
+    <!-- ABOUT SECTION -->
+    <section id="about" class="py-8">
+      <h3 class="text-2xl font-semibold">About Mental Health</h3>
+      <p class="mt-3 text-slate-700 max-w-3xl">
+        Mental health includes emotional, psychological, and social well-being. 
+        It affects how we think, feel, and act. This website provides tips, warning signs, 
+        and support resources for everyone.
+      </p>
+    </section>
+
+    <!-- SIGNS SECTION -->
+    <section id="signs" class="py-8">
+      <h3 class="text-xl font-semibold">Common Signs to Watch For</h3>
+
+      <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="p-4 bg-white rounded-lg shadow-sm">
+          <div class="font-semibold">Mood changes</div>
+          <p class="text-sm text-slate-500 mt-2">Persistent sadness, irritability, or mood swings.</p>
+        </div>
+
+        <div class="p-4 bg-white rounded-lg shadow-sm">
+          <div class="font-semibold">Withdrawal</div>
+          <p class="text-sm text-slate-500 mt-2">Avoiding friends, family, and activities.</p>
+        </div>
+
+        <div class="p-4 bg-white rounded-lg shadow-sm">
+          <div class="font-semibold">Sleep changes</div>
+          <p class="text-sm text-slate-500 mt-2">Insomnia or oversleeping.</p>
+        </div>
+
+        <div class="p-4 bg-white rounded-lg shadow-sm">
+          <div class="font-semibold">Concentration</div>
+          <p class="text-sm text-slate-500 mt-2">Difficulty focusing or making decisions.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESOURCES SECTION -->
+    <section id="resources" class="py-8">
+      <h3 class="text-xl font-semibold">Resources</h3>
+
+      <div class="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
+
+        <div class="p-4 bg-white rounded-lg shadow-sm">
+          <h4 class="font-semibold">Hotlines</h4>
+          <p class="text-sm text-slate-600 mt-2">Contact your local emergency or crisis helpline.</p>
+          <ul class="mt-3 text-sm text-slate-500 list-disc list-inside">
+            <li>Example: 123-456-7890</li>
+            <li>Text: HELP to 80000</li>
           </ul>
         </div>
-        <div class="rounded-img">
-          <img src="https://cdn.pixabay.com/photo/2016/11/29/05/08/adult-1867703_1280.jpg">
+
+        <div class="p-4 bg-white rounded-lg shadow-sm">
+          <h4 class="font-semibold">Self-Help</h4>
+          <p class="text-sm text-slate-600 mt-2">Try breathing exercises, journaling, and grounding.</p>
+          <ol class="mt-3 text-sm text-slate-500 list-decimal list-inside">
+            <li>4-4-4 breathing</li>
+            <li>10-minute walk</li>
+            <li>Write one sentence about your feeling</li>
+          </ol>
+        </div>
+
+        <div class="p-4 bg-white rounded-lg shadow-sm">
+          <h4 class="font-semibold">Professional Help</h4>
+          <p class="text-sm text-slate-600 mt-2">Consult therapists, counsellors, or psychiatrists for support.</p>
         </div>
       </div>
     </section>
 
-    <!-- ISSUES -->
-    <section id="issues">
-      <h2>Common Issues</h2>
-      <div class="grid">
-        <div class="card">
-          <ul style="color:var(--muted)">
-            <li>Stress</li>
-            <li>Anxiety</li>
-            <li>Depression</li>
-            <li>Burnout</li>
-            <li>Loneliness</li>
-            <li>Sleep problems</li>
-          </ul>
-        </div>
-        <div class="rounded-img">
-          <img src="https://cdn.pixabay.com/photo/2017/09/25/13/12/woman-2786274_1280.jpg">
+    <!-- HELP SECTION -->
+    <section id="help" class="py-8">
+      <div class="bg-indigo-50 p-6 rounded-lg">
+        <h3 class="text-xl font-semibold">Need immediate help?</h3>
+        <p class="mt-2 text-slate-700">
+          If you or someone else is at risk of self-harm, contact emergency services immediately.
+        </p>
+
+        <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="p-4 bg-white rounded-lg shadow-sm">
+            <div class="font-semibold">Crisis Hotline</div>
+            <div class="text-slate-500 mt-1">Available 24/7</div>
+            <div class="mt-2 text-lg font-bold">123-456-7890</div>
+          </div>
+
+          <div class="p-4 bg-white rounded-lg shadow-sm">
+            <div class="font-semibold">Text / Chat Support</div>
+            <div class="text-slate-500 mt-1">Confidential</div>
+            <div class="mt-2 text-sm">Text HELP to 80000</div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- WARNING -->
-    <section id="warning">
-      <h2>Warning Signs</h2>
-      <div class="grid">
-        <div class="card">
-          <ul style="color:var(--muted)">
-            <li>Feeling sad or empty</li>
-            <li>Isolation</li>
-            <li>Loss of interest</li>
-            <li>Low energy</li>
-            <li>Changes in sleep</li>
-            <li>Difficulty focusing</li>
-          </ul>
-        </div>
-        <div class="rounded-img">
-          <img src="https://cdn.pixabay.com/photo/2016/11/23/14/45/girl-1851043_1280.jpg">
-        </div>
+    <!-- FAQ SECTION -->
+    <section class="py-8" id="faq">
+      <h3 class="text-xl font-semibold">FAQ</h3>
+      <div class="mt-4 space-y-3">
+
+        <details class="bg-white p-4 rounded-lg shadow-sm">
+          <summary class="font-medium cursor-pointer">How do I know if I need help?</summary>
+          <p class="mt-2 text-sm text-slate-600">
+            If changes in mood, sleep, energy, or thinking last more than two weeks, consider seeking support.
+          </p>
+        </details>
+
+        <details class="bg-white p-4 rounded-lg shadow-sm">
+          <summary class="font-medium cursor-pointer">What can I do for a friend?</summary>
+          <p class="mt-2 text-sm text-slate-600">
+            Listen without judgment, ask if they're safe, and encourage professional support.
+          </p>
+        </details>
+
       </div>
     </section>
 
-    <!-- CARE -->
-    <section id="care">
-      <h2>Self Care</h2>
-      <div class="grid">
-        <div class="card">
-          <ul style="color:var(--muted)">
-            <li>Sleep well</li>
-            <li>Eat healthy</li>
-            <li>Move daily</li>
-            <li>Practice mindfulness</li>
-            <li>Talk to someone</li>
-          </ul>
-        </div>
-        <div class="rounded-img">
-          <img src="https://cdn.pixabay.com/photo/2017/08/06/20/14/spa-2593481_1280.jpg">
-        </div>
+    <!-- CONTACT FORM -->
+    <section class="py-8">
+      <h3 class="text-xl font-semibold">Contact / Volunteer</h3>
+
+      <div class="mt-4 max-w-2xl bg-white p-6 rounded-lg shadow-sm">
+        <form onsubmit="event.preventDefault();">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <input class="border p-2 rounded-md" placeholder="Your name" />
+            <input class="border p-2 rounded-md" placeholder="Email" />
+          </div>
+          <textarea class="w-full border p-2 rounded-md mt-4" rows="4" placeholder="How would you like to help?"></textarea>
+
+          <div class="mt-4 flex items-center justify-between">
+            <button class="px-4 py-2 bg-indigo-600 text-white rounded-md">Send</button>
+            <div class="text-sm text-slate-500">We respect your privacy.</div>
+          </div>
+        </form>
       </div>
     </section>
 
-    <!-- FRIEND -->
-    <section id="friend">
-      <h2>Helping a Friend</h2>
-      <div class="grid">
-        <div class="card">
-          <ul style="color:var(--muted)">
-            <li>Listen carefully</li>
-            <li>Support without judging</li>
-            <li>Encourage professional help</li>
-            <li>Check in regularly</li>
-          </ul>
-        </div>
-        <div class="rounded-img">
-          <img src="https://cdn.pixabay.com/photo/2017/08/06/09/53/people-2590991_1280.jpg">
-        </div>
-      </div>
-    </section>
-
-    <!-- MYTHS -->
-    <section id="myths">
-      <h2>Myths vs Facts</h2>
-      <div class="card">
-        <table>
-          <tr><th>Myth</th><th>Fact</th></tr>
-          <tr><td>Mental illness is weakness</td><td>No — anyone can face it</td></tr>
-          <tr><td>Talking makes it worse</td><td>Talking helps recovery</td></tr>
-          <tr><td>Students don't get mental issues</td><td>They do — very commonly</td></tr>
-        </table>
-      </div>
-    </section>
-
-    <!-- SPREAD -->
-    <section id="spread">
-      <h2>Spread Awareness</h2>
-      <div class="grid">
-        <div class="card">
-          <ul>
-            <li>Talk openly</li>
-            <li>Educate friends</li>
-            <li>Share resources</li>
-            <li>Support others</li>
-          </ul>
-        </div>
-        <div class="rounded-img">
-          <img src="https://cdn.pixabay.com/photo/2019/05/29/01/42/group-4237344_1280.jpg">
-        </div>
-      </div>
-    </section>
-
-    <!-- HELPLINES -->
-    <section id="helpline">
-      <h2>Helplines (India)</h2>
-      <div class="card">
-        <p><b>KIRAN:</b> 1800-599-0019</p>
-        <p><b>AASRA:</b> 9820466726</p>
-        <p><b>iCall:</b> 9152987821</p>
-      </div>
-    </section>
-
-  </div>
-</main>
-
-<footer style="text-align:center;padding:20px;color:var(--muted)">
-  Made with care 💚 Mental Health Awareness
-</footer>
-
-<script>
-  const ham = document.getElementById("hamburger");
-  const mobileMenu = document.getElementById("mobileMenu");
-  ham.addEventListener("click",()=>{
-    mobileMenu.style.display = mobileMenu.style.display==="block"?"none":"block";
-  });
-</script>
+    <footer class="py-8 text-center text-sm text-slate-500">
+      © 2025 Mindful — Mental Health Awareness.
+    </footer>
+  </main>
 
 </body>
 </html>
