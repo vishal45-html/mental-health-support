@@ -1,130 +1,232 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mental Health Awareness</title>
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
 
+  <!-- Animations -->
   <style>
-    body { font-family: 'Inter', sans-serif; }
+    body { font-family: 'Poppins', sans-serif; }
+
+    /* Fade-up animation */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 1s ease forwards;
+    }
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Glow Effect */
+    .glow {
+      box-shadow: 0 0 20px rgba(255, 111, 97, 0.4);
+      transition: 0.3s ease;
+    }
+    .glow:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 35px rgba(255, 111, 97, 0.7);
+    }
   </style>
 </head>
 
-<body class="bg-gray-100 text-gray-900">
+<body class="bg-[#0A021C] text-white">
 
   <!-- NAVBAR -->
-  <header class="w-full bg-white shadow">
-    <div class="max-w-6xl mx-auto flex items-center justify-between py-4 px-6">
-      <h1 class="text-xl font-bold text-indigo-600">Mental Health Awareness</h1>
+  <header class="w-full bg-[#0A021C] border-b border-[#F9C18B]/30">
+    <div class="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
+      <h1 class="text-2xl font-bold text-[#F9C18B]">MENTAL HEALTH AWARENESS</h1>
 
-      <nav class="hidden md:flex gap-6 font-medium">
-        <a href="#home" class="hover:text-indigo-600">Home</a>
-        <a href="#about" class="hover:text-indigo-600">About</a>
-        <a href="#signs" class="hover:text-indigo-600">Signs</a>
-        <a href="#help" class="hover:text-indigo-600">Get Help</a>
+      <nav class="hidden md:flex gap-8 text-lg font-medium">
+        <a href="#stats" class="hover:text-[#F9C18B]">Statistics</a>
+        <a href="#signs" class="hover:text-[#F9C18B]">Warning Signs</a>
+        <a href="#aware" class="hover:text-[#F9C18B]">Awareness</a>
+        <a href="#self" class="hover:text-[#F9C18B]">Self-Assessment</a>
+        <a href="#help" class="hover:text-[#F9C18B]">Help</a>
       </nav>
     </div>
   </header>
 
-  <!-- HERO SECTION -->
-  <section id="home" class="w-full bg-indigo-600 text-white py-20 px-6">
-    <div class="max-w-6xl mx-auto text-center">
-      <h2 class="text-4xl font-bold">Your Mental Health Matters</h2>
-      <p class="mt-4 max-w-2xl mx-auto text-lg">
-        Understand. Support. Reach out.  
-        Mental health is important for everyone — you are not alone.
-      </p>
 
-      <a href="#help"
-         class="mt-6 inline-block bg-white text-indigo-600 px-6 py-3 rounded shadow font-semibold hover:bg-gray-100">
-        Get Help Now
-      </a>
-    </div>
-  </section>
-
-  <!-- ABOUT SECTION -->
-  <section id="about" class="max-w-6xl mx-auto py-12 px-6">
-    <h3 class="text-3xl font-bold mb-4">About Mental Health</h3>
-    <p class="text-gray-700 leading-relaxed max-w-3xl">
-      Mental health includes your emotional, psychological, and social well-being.
-      It affects how you think, feel, and act.  
-      Mental health challenges are common — and with the right help, recovery is possible.
+  <!-- STATS SECTION (same design as before) -->
+  <section id="stats" class="py-20 px-6 max-w-6xl mx-auto fade-up">
+    <h2 class="text-4xl font-extrabold text-center text-[#F9C18B]">Mental Health Reality in India</h2>
+    <p class="text-center text-gray-300 mt-2">
+      Understanding the scope of mental health issues affecting Indian youth
     </p>
-  </section>
 
-  <!-- SIGNS SECTION -->
-  <section id="signs" class="max-w-6xl mx-auto py-12 px-6">
-    <h3 class="text-3xl font-bold mb-6">Common Warning Signs</h3>
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mt-14">
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-
-      <div class="bg-white p-6 rounded-lg shadow">
-        <h4 class="font-bold text-lg">• Mood Changes</h4>
-        <p class="text-gray-600 mt-2">Feeling sad, angry, or irritable for long periods.</p>
+      <div class="rounded-2xl p-8 glow border border-[#F56A6A]/40 bg-gradient-to-b from-[#2C0D4F] to-[#150626]">
+        <h3 class="text-5xl font-extrabold text-[#FF6E6E]">20%</h3>
+        <p class="mt-3">of Indian youth experience depression or severe stress</p>
+        <p class="text-sm text-[#F9C18B] mt-2">Source: WHO India 2023</p>
       </div>
 
-      <div class="bg-white p-6 rounded-lg shadow">
-        <h4 class="font-bold text-lg">• Social Withdrawal</h4>
-        <p class="text-gray-600 mt-2">Avoiding friends, family, or activities you used to enjoy.</p>
+      <div class="rounded-2xl p-8 glow border border-[#F56A6A]/40 bg-gradient-to-b from-[#2C0D4F] to-[#150626]">
+        <h3 class="text-5xl font-extrabold text-[#FF6E6E]">1 in 7</h3>
+        <p class="mt-3">Indians suffer from anxiety disorders</p>
+        <p class="text-sm text-[#F9C18B] mt-2">Source: NMHS</p>
       </div>
 
-      <div class="bg-white p-6 rounded-lg shadow">
-        <h4 class="font-bold text-lg">• Sleep Problems</h4>
-        <p class="text-gray-600 mt-2">Trouble sleeping or sleeping too much.</p>
+      <div class="rounded-2xl p-8 glow border border-[#F56A6A]/40 bg-gradient-to-b from-[#2C0D4F] to-[#150626]">
+        <h3 class="text-5xl font-extrabold text-[#FF6E6E]">60%</h3>
+        <p class="mt-3">never seek treatment due to stigma</p>
+        <p class="text-sm text-[#F9C18B] mt-2">Source: Ministry of Health</p>
       </div>
 
-      <div class="bg-white p-6 rounded-lg shadow">
-        <h4 class="font-bold text-lg">• Loss of Focus</h4>
-        <p class="text-gray-600 mt-2">Difficulty concentrating or making decisions.</p>
-      </div>
-
-      <div class="bg-white p-6 rounded-lg shadow">
-        <h4 class="font-bold text-lg">• Loss of Energy</h4>
-        <p class="text-gray-600 mt-2">Feeling tired or low energy most of the time.</p>
-      </div>
-
-      <div class="bg-white p-6 rounded-lg shadow">
-        <h4 class="font-bold text-lg">• Changes in Appetite</h4>
-        <p class="text-gray-600 mt-2">Eating much more or much less than usual.</p>
+      <div class="rounded-2xl p-8 glow border border-[#F56A6A]/40 bg-gradient-to-b from-[#2C0D4F] to-[#150626]">
+        <h3 class="text-5xl font-extrabold text-[#FF6E6E]">35%</h3>
+        <p class="mt-3">students face academic stress & anxiety</p>
+        <p class="text-sm text-[#F9C18B] mt-2">Source: AIIMS 2023</p>
       </div>
 
     </div>
   </section>
 
-  <!-- HELP SECTION -->
-  <section id="help" class="w-full bg-white py-16 px-6 border-t">
-    <div class="max-w-6xl mx-auto">
-      <h3 class="text-3xl font-bold mb-6">Get Immediate Help</h3>
 
-      <p class="text-gray-700 max-w-2xl">
-        If you or someone you know is struggling or at risk, please reach out.
-        Help is available — and recovery is possible.
-      </p>
+  <!-- WARNING SIGNS (same style as screenshot) -->
+  <section id="signs" class="py-20 px-6 max-w-6xl mx-auto fade-up">
+    <h2 class="text-4xl font-extrabold text-center text-[#F9C18B]">Warning Signs to Watch For</h2>
+    <p class="text-center text-gray-300 mt-2">Early detection can save lives</p>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-14">
 
-        <div class="p-6 bg-indigo-50 rounded-lg shadow">
-          <h4 class="text-xl font-bold text-indigo-700">📞 Crisis Hotline</h4>
-          <p class="mt-2 text-gray-700">Available 24/7</p>
-          <p class="font-bold text-xl mt-3">123-456-7890</p>
-        </div>
-
-        <div class="p-6 bg-indigo-50 rounded-lg shadow">
-          <h4 class="text-xl font-bold text-indigo-700">💬 Chat / Text Support</h4>
-          <p class="mt-2 text-gray-700">Confidential & anonymous</p>
-          <p class="font-bold mt-3">Text “HELP” to 80000</p>
-        </div>
-
+      <div class="rounded-2xl p-8 glow bg-gradient-to-b from-[#2C0D4F] to-[#1B072E] border border-[#FF6E6E]/40">
+        <h3 class="text-xl font-bold text-[#F9C18B]">🧠 Emotional Changes</h3>
+        <p class="text-gray-300 mt-2">Mood swings, sadness, anger, irritability.</p>
       </div>
+
+      <div class="rounded-2xl p-8 glow bg-gradient-to-b from-[#2C0D4F] to-[#1B072E] border border-[#FF6E6E]/40">
+        <h3 class="text-xl font-bold text-[#F9C18B]">😔 Behavioral Changes</h3>
+        <p class="text-gray-300 mt-2">Isolation, drop in performance, avoiding people.</p>
+      </div>
+
+      <div class="rounded-2xl p-8 glow bg-gradient-to-b from-[#2C0D4F] to-[#1B072E] border border-[#FF6E6E]/40">
+        <h3 class="text-xl font-bold text-[#F9C18B]">😵 Physical Changes</h3>
+        <p class="text-gray-300 mt-2">Fatigue, headaches, appetite/sleep issues.</p>
+      </div>
+
+      <div class="rounded-2xl p-8 glow bg-gradient-to-b from-[#2C0D4F] to-[#1B072E] border border-[#FF6E6E]/40">
+        <h3 class="text-xl font-bold text-[#F9C18B]">⚠️ Risk Factors</h3>
+        <p class="text-gray-300 mt-2">Bullying, academic stress, trauma, family issues.</p>
+      </div>
+
+      <div class="rounded-2xl p-8 glow bg-gradient-to-b from-[#2C0D4F] to-[#1B072E] border border-[#FF6E6E]/40">
+        <h3 class="text-xl font-bold text-[#F9C18B]">📉 Social Changes</h3>
+        <p class="text-gray-300 mt-2">Avoiding activities, conflicts, social withdrawal.</p>
+      </div>
+
+      <div class="rounded-2xl p-8 glow bg-gradient-to-b from-[#2C0D4F] to-[#1B072E] border border-[#FF6E6E]/40">
+        <h3 class="text-xl font-bold text-[#F9C18B]">🩺 Health Issues</h3>
+        <p class="text-gray-300 mt-2">Panic attacks, chronic stress, insomnia.</p>
+      </div>
+
     </div>
   </section>
+
+
+  <!-- AWARENESS SECTION (your requested new section) -->
+  <section id="aware" class="py-20 px-6 max-w-6xl mx-auto fade-up">
+    <h2 class="text-4xl font-extrabold text-center text-[#F9C18B]">Spreading Awareness</h2>
+    <p class="text-center text-gray-300 mt-2">Simple steps to promote mental well-being</p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-14">
+
+      <div class="glow rounded-2xl p-8 bg-gradient-to-br from-[#300B4E] to-[#1B072E] border border-[#FF6E6E]/40">
+        <h3 class="text-xl text-[#F9C18B] font-bold">🗣️ Talk Openly</h3>
+        <p class="text-gray-300 mt-2">Start conversations to break the stigma.</p>
+      </div>
+
+      <div class="glow rounded-2xl p-8 bg-gradient-to-br from-[#300B4E] to-[#1B072E] border border-[#FF6E6E]/40">
+        <h3 class="text-xl text-[#F9C18B] font-bold">📚 Educate Others</h3>
+        <p class="text-gray-300 mt-2">Share correct information, facts & resources.</p>
+      </div>
+
+      <div class="glow rounded-2xl p-8 bg-gradient-to-br from-[#300B4E] to-[#1B072E] border border-[#FF6E6E]/40">
+        <h3 class="text-xl text-[#F9C18B] font-bold">📱 Use Social Media</h3>
+        <p class="text-gray-300 mt-2">Spread positivity and awareness.</p>
+      </div>
+
+      <div class="glow rounded-2xl p-8 bg-gradient-to-br from-[#300B4E] to-[#1B072E] border border-[#FF6E6E]/40">
+        <h3 class="text-xl text-[#F9C18B] font-bold">🎉 Organize Events</h3>
+        <p class="text-gray-300 mt-2">Workshops, talks, campaigns, seminars.</p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- SELF ASSESSMENT SECTION -->
+  <section id="self" class="py-20 px-6 max-w-6xl mx-auto fade-up">
+    <h2 class="text-4xl font-extrabold text-center text-[#F9C18B]">Self-Assessment</h2>
+    <p class="text-center text-gray-300 mt-2">Check your current mental well-being</p>
+
+    <div class="mt-14 grid grid-cols-1 gap-6">
+
+      <div class="glow rounded-2xl p-8 bg-gradient-to-b from-[#2C0D4F] to-[#1B072E] border border-[#FF6E6E]/40">
+        <h3 class="text-xl font-bold text-[#F9C18B]">❓ How have you been feeling lately?</h3>
+        <ul class="list-disc ml-6 mt-2 text-gray-300">
+          <li>Do you feel stressed often?</li>
+          <li>Do you struggle to focus?</li>
+          <li>Do you feel low or tired?</li>
+        </ul>
+      </div>
+
+      <div class="glow rounded-2xl p-8 bg-gradient-to-b from-[#2C0D4F] to-[#1B072E] border border-[#FF6E6E]/40">
+        <h3 class="text-xl font-bold text-[#F9C18B]">❓ Are you avoiding social interaction?</h3>
+        <p class="mt-2 text-gray-300">If yes, it may be a sign to seek support.</p>
+      </div>
+
+      <div class="glow rounded-2xl p-8 bg-gradient-to-b from-[#2C0D4F] to-[#1B072E] border border-[#FF6E6E]/40">
+        <h3 class="text-xl font-bold text-[#F9C18B]">❓ How is your sleep?</h3>
+        <p class="mt-2 text-gray-300">Poor sleep is linked to anxiety and depression.</p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- HELPLINE NUMBERS -->
+  <section id="help" class="py-20 px-6 max-w-6xl mx-auto fade-up">
+    <h2 class="text-4xl font-extrabold text-center text-[#F9C18B]">Helpline Numbers (India)</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-14">
+
+      <div class="glow rounded-2xl p-8 bg-gradient-to-br from-[#300B4E] to-[#1B072E] border border-[#FF6E6E]/40">
+        <h3 class="text-xl font-bold text-[#F9C18B]">📞 KIRAN (24x7)</h3>
+        <p class="mt-2 text-gray-300 text-lg font-semibold">1800-599-0019</p>
+      </div>
+
+      <div class="glow rounded-2xl p-8 bg-gradient-to-br from-[#300B4E] to-[#1B072E] border border-[#FF6E6E]/40">
+        <h3 class="text-xl font-bold text-[#F9C18B]">📞 AASRA</h3>
+        <p class="mt-2 text-gray-300 text-lg font-semibold">+91 9820466726</p>
+      </div>
+
+      <div class="glow rounded-2xl p-8 bg-gradient-to-br from-[#300B4E] to-[#1B072E] border border-[#FF6E6E]/40">
+        <h3 class="text-xl font-bold text-[#F9C18B]">📞 iCall</h3>
+        <p class="mt-2 text-gray-300 text-lg font-semibold">+91 9152987821</p>
+      </div>
+
+      <div class="glow rounded-2xl p-8 bg-gradient-to-br from-[#300B4E] to-[#1B072E] border border-[#FF6E6E]/40">
+        <h3 class="text-xl font-bold text-[#F9C18B]">📞 Snehi</h3>
+        <p class="mt-2 text-gray-300 text-lg font-semibold">+91 9582208181</p>
+      </div>
+
+    </div>
+  </section>
+
 
   <!-- FOOTER -->
-  <footer class="bg-gray-900 text-white py-6 text-center text-sm">
-    © 2025 Mental Health Awareness | You are not alone.
+  <footer class="py-6 text-center text-gray-300 bg-[#0A021C] border-t border-[#F9C18B]/30">
+    © 2025 Mental Health Awareness | You Are Not Alone.
   </footer>
 
 </body>
